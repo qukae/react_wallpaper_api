@@ -21,7 +21,7 @@ export default class Gallery extends Component {
 
       return (
       <div>
-        <img src={item} alt=""/>
+        <img src={item} className="gallery-img" alt={item}/>
       </div>
       )
     })
@@ -45,7 +45,7 @@ export default class Gallery extends Component {
   render() {
     const {data} = this.state
     return (
-      <div>
+      <div className="gallery">
         {this.el()}
       </div>
     );
