@@ -27,6 +27,7 @@ export default class Search extends Component {
     return (
       <form onSubmit={this.onSubmit} className="search">
         <input
+          value={this.state.input}
           onChange={this.onChangeInput}
           className="search-input"
           type="text"

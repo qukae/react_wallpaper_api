@@ -14,9 +14,11 @@ export default class Gallery extends Component {
     this.getWp()
     console.log('mount');
   }
-  componentDidUpdate(){
+  componentDidUpdate(prevQ){
     console.log("gal_upd");
-    // this.el = this.CreateEl()
+    if(prevQ.searchQuery !== this.props.searchQuery) {
+      this.getWp()
+    }
   }
 
   el= []
@@ -51,7 +53,7 @@ export default class Gallery extends Component {
 
   render() {
 
-    const {data} = this.state
+  
     return (
       <div className="gallery">
         {this.CreateEl()}
