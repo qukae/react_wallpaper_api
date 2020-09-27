@@ -1,0 +1,19 @@
+.search{
+  padding: 0.3rem ;
+  margin: 0.5rem 0.1rem;
+  width: 30%;
+
+}
+input[type="text"] {
+  text-shadow: 1px 1px 3px rgba(0,0,0,.75);
+  vertical-align: baseline;
+  color: aliceblue;
+  background-color : #1A1A1A;
+  padding-left: 0.5rem;
+  border-style: none;
+  border-radius: 2px;
+  width: 100%;
+}
+input[type="text"]:focus {
+  outline: none;
+}

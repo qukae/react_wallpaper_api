@@ -1,0 +1,102 @@
+.logo{
+  margin: 0 1rem;
+}
+
+/* Glitch text */
+.glitch {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  position: relative;
+  text-shadow:
+    0.05em 0 0 rgba(255,0,0,.75),
+    -0.025em -0.05em 0 rgba(0,255,0,.75),
+    0.025em 0.05em 0 rgba(0,0,255,.75);
+
+
+}
+.glitch span {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.glitch span:first-child {
+  opacity: 0.8;
+  clip-path: polygon(0 0, 30% 0%, 100% 50%, 15% 50%);
+  transform: translate(-0.1em, -0.09em);
+}
+.glitch span:last-child {
+  opacity: 0.8;
+  clip-path: polygon(0 80%, 80% 80%, 10% 100%, 0 100%);
+  transform: translate(0.8em, 0.025em);
+
+}
+.glitch:hover {
+  animation: glitch 900ms infinite;
+  cursor: pointer;
+}
+.glitch span:first-child:hover {
+  animation: glitch 7050ms infinite;
+}
+.glitch span:last-child:hover {
+  animation: glitch 700ms infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow:
+    0.05em 0 0 rgba(255,0,0,.75),
+    -0.005em -0.025em 0 rgba(0,255,0,.75),
+    -0.025em 0.05em 0 rgba(0,0,255,.75);
+  }
+  14% {
+    text-shadow:
+    0.05em 0 0.05em rgba(255,0,0,.75),
+    -0.005em -0.025em 0 rgba(0,255,0,.75),
+    -0.025em 0.05em 0 rgba(0,0,255,.75);
+  }
+  15% {
+    text-shadow:
+    -0.05em -0.05em 0 rgba(255,0,0,.75),
+    0.025em 0.025em 0 rgba(0,255,0,.75),
+    -0.05em -0.05em 0 rgba(0,0,255,.75);
+  }
+  49% {
+    text-shadow:
+    -0.05em -0.05em 0 rgba(255,0,0,.75),
+    0.025em 0.025em 0 rgba(0,255,0,.75),
+    -0.05em -0.05em 0 rgba(0,0,255,.75);
+  }
+  50% {
+    text-shadow:
+    0.025em 0.05em 0 rgba(255,0,0,.75),
+    0.05em 0 0 rgba(0,255,0,.75),
+    0 -0.05em 0 rgba(0,0,255,.75);
+  }
+  99% {
+    text-shadow:
+    0.025em 0.05em 0 rgba(255,0,0,.75),
+    0.05em 0 0 rgba(0,255,0,.75),
+    0 -0.05em 0 rgba(0,0,255,.75);
+  }
+  100% {
+    text-shadow:
+    -0.025em 0 0 rgba(255,0,0,.75),
+    -0.025em -0.025em 0 rgba(0,255,0,.75),
+    -0.025em -0.05em 0 rgba(0,0,255,.75);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}

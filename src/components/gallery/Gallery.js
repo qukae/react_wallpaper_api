@@ -8,28 +8,35 @@ export default class Gallery extends Component {
   apiService = new ApiService();
 
   state = {
-    data: new Array(24)
+    data: []
   }
   componentDidMount(){
     this.getWp()
     console.log('mount');
-    // console.log(this.state);
+  }
+  componentDidUpdate(){
+    console.log("gal_upd");
+    // this.el = this.CreateEl()
   }
 
-  el = () =>  {
+  el= []
+
+  CreateEl = () =>  {
+
     return this.state.data.map((item) => {
 
       return (
-      <div>
-        <img src={item} alt=""/>
+      <div key={item}>
+        <img src={item} className="gallery-img" alt={item}/>
       </div>
       )
     })
   }
 
+
   getWp() {
     this.apiService
-      .searchWp()
+      .searchWp(this.props.searchQuery)
       .then((d)=>{
         this.setState({
           data: d.map((item) =>{
@@ -37,16 +44,17 @@ export default class Gallery extends Component {
           })
         })
       })
-      .then(() => {console.log('log', this.state)})
+      .then(() => {console.log('gallery_getWp', this.state, this.props.searchQuery)})
       }
 
 
 
   render() {
+
     const {data} = this.state
     return (
-      <div>
-        {this.el()}
+      <div className="gallery">
+        {this.CreateEl()}
       </div>
     );
   }

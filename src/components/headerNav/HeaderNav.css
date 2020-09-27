@@ -1,0 +1,16 @@
+.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-bottom: 0;
+}
+.btn-nav-li{
+  padding: 0.3rem ;
+  margin: 0.5rem 0.1rem;
+}
+.btn-nav {
+  text-decoration: none;
+  color: aliceblue !important;
+  background-color: transparent;
+  text-shadow: 1px 1px 3px rgba(0,0,0,.75);
+}
