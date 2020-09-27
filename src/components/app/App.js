@@ -17,7 +17,6 @@ export default class App extends Component {
   }
 
   render() {
-    const searchQuery = '2077'
 
     return (
     <>
