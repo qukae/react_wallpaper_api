@@ -6,7 +6,7 @@ const Categories = ({ categories, onTypeClick }) => {
   const clazz = 'filter-btn-active';
 
   return (
-    <>
+    <div>
       <button
         type="button"
         className={`filter-btn ${categories[0] ? clazz : null}`}
@@ -30,7 +30,7 @@ const Categories = ({ categories, onTypeClick }) => {
       >
         People
       </button>
-    </>
+    </div>
   );
 };
 

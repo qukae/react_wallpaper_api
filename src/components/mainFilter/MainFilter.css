@@ -1,6 +1,7 @@
 .main-filter{
   padding: 0.5rem;
   background-color: #00000050;
+  display: flex;
 }
 
 .filter-btn {
