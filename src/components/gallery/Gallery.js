@@ -12,11 +12,13 @@ export default class Gallery extends Component {
   }
   componentDidMount(){
     this.getWp()
-    console.log('mount');
+    // console.log('mount');
   }
-  componentDidUpdate(){
-    console.log("gal_upd");
-    // this.el = this.CreateEl()
+  componentDidUpdate(prevQ){
+    // console.log("gal_upd");
+    if(prevQ !== this.props) {
+      this.getWp()
+    }
   }
 
   el= []
@@ -35,8 +37,9 @@ export default class Gallery extends Component {
 
 
   getWp() {
+    const {searchQuery, categories} = this.props
     this.apiService
-      .searchWp(this.props.searchQuery)
+      .searchWp(searchQuery, categories)
       .then((d)=>{
         this.setState({
           data: d.map((item) =>{
@@ -44,14 +47,14 @@ export default class Gallery extends Component {
           })
         })
       })
-      .then(() => {console.log('gallery_getWp', this.state, this.props.searchQuery)})
+      .then(() => {console.log('gallery_getWp', categories, '2nd:', searchQuery)})
       }
 
 
 
   render() {
 
-    const {data} = this.state
+
     return (
       <div className="gallery">
         {this.CreateEl()}
