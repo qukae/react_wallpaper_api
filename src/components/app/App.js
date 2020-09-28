@@ -5,7 +5,8 @@ import MainFilter from '../mainFilter/MainFilter';
 
 export default class App extends Component {
   state = {
-    searchQuery: '2077'
+    searchQuery: '2077',
+    categories: [1,0,0]
   }
 
   onSearch = (e) => {
@@ -13,18 +14,23 @@ export default class App extends Component {
     this.setState({
       searchQuery: e
     })
-    // console.log(this.state.searchQuery);
+    console.log(this.state);
+  }
+  onFilterSubmit = (e) => {
+    console.log('app_sub', e);
+    this.setState({
+      categories: e
+    })
   }
 
   render() {
-    
-
+    const {searchQuery, categories} = this.state
     return (
     <>
       {console.log('app_render')}
       <MainHeader onSearch={(e) => {this.onSearch(e)}}/>
-      <MainFilter />
-      <Gallery searchQuery={this.state.searchQuery}/>
+      <MainFilter onSubmit={(e) => {this.onFilterSubmit(e)}}/>
+      {/* <Gallery searchQuery={searchQuery} categories={categories}/> */}
     </>
     );
   }
