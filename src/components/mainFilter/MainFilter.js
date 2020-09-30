@@ -8,19 +8,15 @@ export default class MainFilter extends Component {
   state = {
     categories: [1,0,0],
     color: null,
-    colorMenuVisible: false
   }
-  showColorMenu = () => {
-    this.setState(({colorMenuVisible}) => {
-      const res = colorMenuVisible ? false : true
-      return {colorMenuVisible: res}
-    })
-  }
+
+
   onColorClick = (color) => {
     this.setState({
       color: color
     })
   }
+
   onCategoriesClick = (indx) => {
     this.setState(({categories}) => {
       const oldEl = categories[indx]
@@ -36,14 +32,14 @@ export default class MainFilter extends Component {
   }
 
   render() {
-    const {categories, colorMenuVisible, color } = this.state
+    const {categories, color } = this.state
 
     return (
       <>
         <form onSubmit={this.onSubmit} className="main-filter">
           <Categories onTypeClick={(indx) => this.onCategoriesClick(indx)} categories={categories}/>
 
-          <Colors showColorMenu={() => this.showColorMenu()} colorMenuVisible={colorMenuVisible} onColorClick={(color) => this.onColorClick(color)} color={color}/>
+          <Colors  onColorClick={(color) => this.onColorClick(color)} color={color}/>
           <button type="submit" className="filter-btn">Submit</button>
         </form>
       </>
