@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import Categories from './categories/Categories';
+import Colors from './colors/Colors';
 import './MainFilter.css';
 
 export default class MainFilter extends Component {
 
   state = {
     categories: [1,0,0],
-    color: '',
-    colorsMenuVisible: false
+    color: null,
+  }
+
+
+  onColorClick = (color) => {
+      this.setState({
+        color: color
+      })
   }
 
   onCategoriesClick = (indx) => {
-    // console.log('clkc_filer', indx, this.state.categories);
     this.setState(({categories}) => {
       const oldEl = categories[indx]
       const newEl = oldEl ? 0 : 1
@@ -20,21 +26,23 @@ export default class MainFilter extends Component {
   };
 
   onSubmit = (e) => {
+    console.log('filter_submit: ', this.state.color);
     e.preventDefault()
-    // console.log('submit', this.state.categories)
-    this.props.onSubmit(this.state.categories)
+    this.props.onSubmit(this.state.categories, this.state.color)
   }
 
   render() {
     const {categories} = this.state
 
     return (
-      <div className="main-filter">
-        <form onSubmit={this.onSubmit}>
+      <>
+        <form onSubmit={this.onSubmit} className="main-filter">
           <Categories onTypeClick={(indx) => this.onCategoriesClick(indx)} categories={categories}/>
+
+          <Colors  onColorClick={(color) => this.onColorClick(color)}/>
           <button type="submit" className="filter-btn">Submit</button>
         </form>
-      </div>
+      </>
     );
   }
 }

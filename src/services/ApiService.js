@@ -13,9 +13,14 @@ export default class ApiService {
     return await res.json();
   }
 
-  async searchWp(q = '2077', categories = [1,0,0]) {
-    console.log('api q', q, 'api cat', categories);
-    const res = await this.getResource(`/v1/search?q=${q}&categories=${categories.join('')}&purity=100&sorting=date_added&order=desc&page=2`)
+  async searchWp(q = '2077', categories = [1,0,0], color = '660000') {
+    console.log('api q', q, 'api cat', categories, 'api_clolor', color);
+    let colorApi = null
+    if (color) {
+      colorApi = `&colors=${color}`
+    }
+   
+    const res = await this.getResource(`/v1/search?q=${q}&categories=${categories.join('')}&purity=100&sorting=date_added&order=desc${colorApi}&page=2`)
     return res.data
   }
 }

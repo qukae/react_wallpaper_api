@@ -1,0 +1,24 @@
+.colors-menu {
+  display: grid;
+  grid-template-columns: repeat(6, 60px [col-start]);
+  position: absolute;
+  padding: 0.5rem;
+  top: 30px;
+  margin: 0.1rem;
+  right: 0-;
+  color: rgb(138, 138, 138);
+  background-color: #6b6b6b;
+  box-shadow: 11px 14px 26px -6px rgba(0,0,0,0.59);
+}
+
+.colors-div {
+  position: relative;
+}
+
+.colors-btn{
+margin: 0.2rem;
+height: 1.5rem;
+border: none;
+border-radius: 2px;
+box-shadow: inset 0 0 0.75em rgba(255,255,255,.03), 0 2px 0 #222, 0 3px 4px -3px #000, 0 1px 2px rgba(0,0,0,.2);
+}
