@@ -7,7 +7,8 @@ export default class App extends Component {
   state = {
     searchQuery: '',
     categories: [1,0,0],
-    color: null
+    color: null,
+    sorting: 'date_added'
   }
 
   onSearch = (e) => {
@@ -20,19 +21,23 @@ export default class App extends Component {
   onFilterSubmit = (categories, color) => {
     console.log('app_sub', categories, color);
     this.setState({
-      categories: categories,
-      color: color
+      categories,
+      color
     })
+  }
+  onNavClick = (sorting) => {
+    console.log(sorting);
+    this.setState({sorting})
   }
 
   render() {
-    const {searchQuery, categories, color} = this.state
+    const {searchQuery, categories, color, sorting} = this.state
     return (
     <>
       {console.log('app_render')}
-      <MainHeader onSearch={(e) => {this.onSearch(e)}}/>
+      <MainHeader onSearch={(e) => {this.onSearch(e)}} onNavClick={(sorting) => {this.onNavClick(sorting)}}/>
       <MainFilter onSubmit={(categories, color) => {this.onFilterSubmit(categories, color)}}/>
-      {/* <Gallery searchQuery={searchQuery} categories={categories} color={color}/> */}
+      <Gallery searchQuery={searchQuery} categories={categories} color={color} sorting={sorting}/>
     </>
     );
   }

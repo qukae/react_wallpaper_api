@@ -37,9 +37,9 @@ export default class Gallery extends Component {
 
 
   getWp() {
-    const {searchQuery, categories, color} = this.props
+    const {searchQuery, categories, color, sorting} = this.props
     this.apiService
-      .searchWp(searchQuery, categories, color)
+      .searchWp(searchQuery, categories, color, sorting)
       .then((d)=>{
         this.setState({
           data: d.map((item) =>{

@@ -4,11 +4,11 @@ import Logo from '../logo/Logo';
 import HeaderNav from '../headerNav/HeaderNav';
 import Search from '../search/Search';
 
-const MainHeader = ({ onSearch }) => (
+const MainHeader = ({ onSearch, onNavClick }) => (
   <>
     <div className="main-header">
       <Logo />
-      <HeaderNav />
+      <HeaderNav onNavClick={(sorting) => { onNavClick(sorting); }} />
       <Search onSearch={(e) => { onSearch(e); }} />
     </div>
   </>
