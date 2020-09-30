@@ -12,9 +12,9 @@ export default class MainFilter extends Component {
 
 
   onColorClick = (color) => {
-    this.setState({
-      color: color
-    })
+      this.setState({
+        color: color
+      })
   }
 
   onCategoriesClick = (indx) => {
@@ -32,14 +32,14 @@ export default class MainFilter extends Component {
   }
 
   render() {
-    const {categories, color } = this.state
+    const {categories} = this.state
 
     return (
       <>
         <form onSubmit={this.onSubmit} className="main-filter">
           <Categories onTypeClick={(indx) => this.onCategoriesClick(indx)} categories={categories}/>
 
-          <Colors  onColorClick={(color) => this.onColorClick(color)} color={color}/>
+          <Colors  onColorClick={(color) => this.onColorClick(color)}/>
           <button type="submit" className="filter-btn">Submit</button>
         </form>
       </>

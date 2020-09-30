@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import '../MainFilter.css';
 import './Colors.css';
 
-const Colors = ({ onColorClick, color }) => {
+const Colors = ({ onColorClick }) => {
   const colors = [
     '660000', '990000', 'cc0000', 'cc3333', 'ea4c88', '993399', '663399', '333399', '0066cc',
     '0099cc', '66cccc', '77cc33', '669900', '336600', '666600', '999900', 'cccc33', 'ffff00',
@@ -15,9 +15,8 @@ const Colors = ({ onColorClick, color }) => {
   // click outside hook
   const node = useRef();
   const [open, setOpen] = useState(false);
-
+  const [btnColor, setBtnColor] = useState('313131');
   const handleClickOutside = (e) => {
-    console.log('clicking anywhere');
     if (node.current.contains(e.target)) {
       // inside click
       return;
@@ -28,6 +27,7 @@ const Colors = ({ onColorClick, color }) => {
 
   const handleChange = (item) => {
     onColorClick(item);
+    setBtnColor(item || '313131');
     setOpen(false);
   };
 
@@ -49,12 +49,12 @@ const Colors = ({ onColorClick, color }) => {
     const el = colors.map((item) => {
       if (item === 'reset') {
         return (
-          <button type="button" className="colors-btn" key="reset" style={{ backgroundColor: 'white' }}>clear</button>
+          <button onClick={() => handleChange(null)} type="button" className="colors-btn" key="reset" style={{ backgroundColor: 'white' }}>clear</button>
         );
       }
-      const btnColor = `#${item}`;
+      const colorItem = `#${item}`;
       return (
-        <button onClick={() => handleChange(item)} type="button" className="colors-btn" key={btnColor} style={{ backgroundColor: btnColor }} />
+        <button onClick={() => handleChange(item)} type="button" className="colors-btn" key={colorItem} style={{ backgroundColor: colorItem }} />
       );
     });
     return el;
@@ -64,7 +64,7 @@ const Colors = ({ onColorClick, color }) => {
 
   return (
     <div ref={node} className="colors-div">
-      <button type="button" className={`filter-btn ${open ? clazz : null}`} onClick={() => setOpen(!open)} style={{ backgroundColor: `#${color}` }}>
+      <button type="button" className={`filter-btn ${open ? clazz : null}`} onClick={() => setOpen(!open)} style={{ backgroundColor: `#${btnColor}` }}>
         Color
       </button>
 
