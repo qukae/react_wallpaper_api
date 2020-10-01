@@ -1,64 +1,40 @@
-import React, { Component } from 'react';
-import ApiService from '../../services/ApiService'
-import './Gallery.css'
+import React, { useRef, useCallback } from 'react';
+import './Gallery.css';
 
+export default function Gallery({
+  wallz, loading, hasMore, onPageScroll,
+}) {
+  const observer = useRef();
 
-export default class Gallery extends Component {
-
-  apiService = new ApiService();
-
-  state = {
-    data: []
-  }
-  componentDidMount(){
-    this.getWp()
-    // console.log('mount');
-  }
-  componentDidUpdate(prevQ){
-    // console.log("gal_upd");
-    if(prevQ !== this.props) {
-      this.getWp()
-    }
-  }
-
-  el= []
-
-  CreateEl = () =>  {
-
-    return this.state.data.map((item) => {
-
-      return (
-      <div key={item}>
-        <img src={item} className="gallery-img" alt={item}/>
-      </div>
-      )
-    })
-  }
-
-
-  getWp() {
-    const {searchQuery, categories, color} = this.props
-    this.apiService
-      .searchWp(searchQuery, categories, color)
-      .then((d)=>{
-        this.setState({
-          data: d.map((item) =>{
-            return item.thumbs.large
-          })
-        })
-      })
-      .then(() => {console.log('gallery_getWp', categories, 'q:', searchQuery, ' color: ', color)})
+  const lastWallzRef = useCallback((node) => {
+    // if (loading) return;
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        onPageScroll();
       }
+    });
+    if (node) observer.current.observe(node);
+  }, [loading, hasMore]);
 
-
-
-  render() {
-
-
+  const CreateEl = () => wallz.map((item, index) => {
+    if (wallz.length === index + 1) {
+      return (
+        <div ref={lastWallzRef} key={item}>
+          <img src={item} className="gallery-img" alt={item} />
+        </div>
+      );
+    }
     return (
-      <div className="gallery">
-        {this.CreateEl()}
+      <div key={item}>
+        <img src={item} className="gallery-img" alt={item} />
       </div>
     );
-  }
+  });
+
+  return (
+    <div className="gallery">
+      {CreateEl()}
+    </div>
+  );
 }
