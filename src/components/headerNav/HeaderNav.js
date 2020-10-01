@@ -2,7 +2,6 @@ import React from 'react';
 import './HeaderNav.css';
 
 const HeaderNav = ({onNavClick}) => {
-  console.log('header');
   return (
     <nav>
       <ul className="header-nav">

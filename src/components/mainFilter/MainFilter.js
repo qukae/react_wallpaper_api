@@ -26,7 +26,6 @@ export default class MainFilter extends Component {
   };
 
   onSubmit = (e) => {
-    console.log('filter_submit: ', this.state.color);
     e.preventDefault()
     this.props.onSubmit(this.state.categories, this.state.color)
   }
