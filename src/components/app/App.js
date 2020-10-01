@@ -1,44 +1,52 @@
-import React, { Component } from 'react';
+/* eslint-disable no-shadow */
+import React, { useState, useRef, useCallback } from 'react';
 import Gallery from '../gallery/Gallery';
 import MainHeader from '../mainHeader/MainHeader';
 import MainFilter from '../mainFilter/MainFilter';
+import getWallz from '../../services/getWallzApi';
 
-export default class App extends Component {
-  state = {
-    searchQuery: '',
-    categories: [1,0,0],
-    color: null,
-    sorting: 'date_added'
-  }
+export default function App() {
+  const [q, setQ] = useState('');
+  const [categories, setCategories] = useState([1, 0, 0]);
+  const [colors, setColors] = useState(null);
+  const [sorting, setSorting] = useState('date_added');
+  const [page, setPage] = useState(1);
 
-  onSearch = (e) => {
-    console.log("search_app",e);
-    this.setState({
-      searchQuery: e
-    })
-    console.log(this.state);
-  }
-  onFilterSubmit = (categories, color) => {
-    console.log('app_sub', categories, color);
-    this.setState({
-      categories,
-      color
-    })
-  }
-  onNavClick = (sorting) => {
-    console.log(sorting);
-    this.setState({sorting})
-  }
+  // const observer = useRef();
+  // const lastWallzRef = useCallback((node) => {
+  //   console.log(node);
+  // });
 
-  render() {
-    const {searchQuery, categories, color, sorting} = this.state
-    return (
+  const {
+    wallz,
+    hasMore,
+    loading,
+    error,
+  } = getWallz(q, categories, colors, sorting, page);
+
+  const onSearch = (e) => {
+    setQ(e);
+    setPage(1);
+  };
+  const onFilterSubmit = (categories, colors) => {
+    setColors(colors);
+    setCategories(categories);
+    setPage(1);
+  };
+  const onNavClick = (sorting) => {
+    setSorting(sorting);
+    setPage(1);
+  };
+  const onPageScroll = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  return (
     <>
       {console.log('app_render')}
-      <MainHeader onSearch={(e) => {this.onSearch(e)}} onNavClick={(sorting) => {this.onNavClick(sorting)}}/>
-      <MainFilter onSubmit={(categories, color) => {this.onFilterSubmit(categories, color)}}/>
-      <Gallery searchQuery={searchQuery} categories={categories} color={color} sorting={sorting}/>
+      <MainHeader onSearch={(e) => { onSearch(e); }} onNavClick={(sorting) => { onNavClick(sorting); }} />
+      <MainFilter onSubmit={(categories, color) => { onFilterSubmit(categories, color); }} />
+      <Gallery wallz={wallz} page={page} loading={loading} hasMore={hasMore} onPageScroll={onPageScroll} />
     </>
-    );
-  }
+  );
 }
