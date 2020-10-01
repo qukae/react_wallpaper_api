@@ -2,12 +2,13 @@ import React, { useRef, useCallback } from 'react';
 import './Gallery.css';
 
 export default function Gallery({
-  wallz, loading, hasMore, onPageScroll,
+  wallz, loading, error, hasMore, onPageScroll,
 }) {
   const observer = useRef();
 
   const lastWallzRef = useCallback((node) => {
-    // if (loading) return;
+    if (loading) return;
+    if (!hasMore) return;
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
@@ -33,8 +34,24 @@ export default function Gallery({
   });
 
   return (
-    <div className="gallery">
-      {CreateEl()}
-    </div>
+    <>
+      <div className="gallery">
+        {CreateEl()}
+      </div>
+      <div className="loader">
+        {loading}
+        <div className="lds-roller">
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+        </div>
+      </div>
+      <div>{error && 'Error'}</div>
+    </>
   );
 }

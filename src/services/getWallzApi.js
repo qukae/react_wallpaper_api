@@ -1,19 +1,22 @@
-/* eslint-disable no-return-assign */
-/* eslint-disable no-useless-return */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function useGetWallz(q, categories, colors, sorting, page) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [wallz, setWallz] = useState([]);
-  const [hasMore, setHasMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     setWallz([]);
   }, [q, categories, colors, sorting]);
 
   useEffect(() => {
+    if (!hasMore) {
+      setLoading(false);
+      return;
+    }
+    console.log('request');
     setLoading(true);
     setError(false);
     let cancel;
@@ -23,15 +26,20 @@ export default function useGetWallz(q, categories, colors, sorting, page) {
       params: {
         q, categories, colors, sorting, page,
       },
-      cancelToken: new axios.CancelToken((c) => cancel = c),
+      cancelToken: new axios.CancelToken((c) => { cancel = c; return c; }),
     }).then((res) => {
+      console.log(res);
       setWallz((prevWallz) => [...prevWallz, ...res.data.data.map((w) => w.thumbs.large)]);
+      setHasMore(res.data.data.length > 0);
+      setLoading(false);
     }).catch((e) => {
-      if (axios.isCancel(e)) return;
+      if (axios.isCancel(e)) {
+        return;
+      }
       setError(true);
     });
     return () => cancel();
-  }, [q, categories, colors, sorting, page]);
+  }, [q, categories, colors, sorting, page, hasMore]);
 
   return {
     loading, error, wallz, hasMore,

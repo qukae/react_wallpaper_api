@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState } from 'react';
 import Gallery from '../gallery/Gallery';
 import MainHeader from '../mainHeader/MainHeader';
 import MainFilter from '../mainFilter/MainFilter';
@@ -11,11 +11,6 @@ export default function App() {
   const [colors, setColors] = useState(null);
   const [sorting, setSorting] = useState('date_added');
   const [page, setPage] = useState(1);
-
-  // const observer = useRef();
-  // const lastWallzRef = useCallback((node) => {
-  //   console.log(node);
-  // });
 
   const {
     wallz,
@@ -43,10 +38,10 @@ export default function App() {
 
   return (
     <>
-      {console.log('app_render')}
+      {/* {console.log('app_render')} */}
       <MainHeader onSearch={(e) => { onSearch(e); }} onNavClick={(sorting) => { onNavClick(sorting); }} />
       <MainFilter onSubmit={(categories, color) => { onFilterSubmit(categories, color); }} />
-      <Gallery wallz={wallz} page={page} loading={loading} hasMore={hasMore} onPageScroll={onPageScroll} />
+      <Gallery wallz={wallz} page={page} loading={loading} error={error} hasMore={hasMore} onPageScroll={onPageScroll} />
     </>
   );
 }
