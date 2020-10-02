@@ -21,15 +21,15 @@ export default function Gallery({
   const CreateEl = () => wallz.map((item, index) => {
     if (wallz.length === index + 1) {
       return (
-        <div ref={lastWallzRef} key={item}>
+        <figure className="container-img" ref={lastWallzRef} key={item}>
           <img src={item} className="gallery-img" alt={item} />
-        </div>
+        </figure>
       );
     }
     return (
-      <div key={item}>
+      <figure className="container-img" key={item}>
         <img src={item} className="gallery-img" alt={item} />
-      </div>
+      </figure>
     );
   });
 

@@ -5,8 +5,13 @@
   justify-content: center;
   width: 100%;
 }
-.gallery-img {
+.container-img{
+  height: 243px;
+  width: 432px;
   margin: 10px;
+  padding: 0;
+}
+.gallery-img {
   border-radius: 5px;
   -webkit-box-shadow: 5px 6px 9px -3px rgba(0,0,0,1);
   -moz-box-shadow: 5px 6px 9px -3px rgba(0,0,0,1);
