@@ -2,6 +2,10 @@
   padding: 0.5rem;
   background-color: #00000050;
   display: flex;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  z-index: 101;
 }
 
 .filter-btn {
