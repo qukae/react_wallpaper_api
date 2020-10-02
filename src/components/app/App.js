@@ -1,36 +1,44 @@
+/* eslint-disable max-len */
 /* eslint-disable no-shadow */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Gallery from '../gallery/Gallery';
 import MainHeader from '../mainHeader/MainHeader';
 import MainFilter from '../mainFilter/MainFilter';
-import getWallz from '../../services/getWallzApi';
+import useGetWallz from '../../services/getWallzApi';
 
 export default function App() {
-  const [q, setQ] = useState('');
+  const [q, setQ] = useState();
   const [categories, setCategories] = useState([1, 0, 0]);
   const [colors, setColors] = useState(null);
   const [sorting, setSorting] = useState('date_added');
   const [page, setPage] = useState(1);
+  const [wallzData, setWallzData] = useState([]);
 
   const {
-    wallz,
     hasMore,
     loading,
     error,
     data,
-  } = getWallz(q, categories, colors, sorting, page);
-  console.log('app_data', data);
+  } = useGetWallz(q, categories, colors, sorting, page);
+
+  useEffect(() => {
+    setWallzData((prevWallzData) => [...prevWallzData, ...data]);
+  }, [data]);
+
   const onSearch = (e) => {
+    setWallzData([]);
     setQ(e);
     setPage(1);
   };
   const onFilterSubmit = (categories, colors) => {
+    setWallzData([]);
     setColors(colors);
     setCategories(categories);
     setPage(1);
   };
   const onNavClick = (sorting) => {
+    setWallzData([]);
     setSorting(sorting);
     setPage(1);
   };
@@ -55,7 +63,7 @@ export default function App() {
           path="/"
           exact
           render={() => (
-            <Gallery wallz={wallz} page={page} loading={loading} error={error} hasMore={hasMore} onPageScroll={onPageScroll} />
+            <Gallery page={page} loading={loading} error={error} hasMore={hasMore} onPageScroll={onPageScroll} wallzData={wallzData} />
           )}
         />
 

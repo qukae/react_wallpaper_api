@@ -2,7 +2,7 @@ import React, { useRef, useCallback } from 'react';
 import './Gallery.css';
 
 export default function Gallery({
-  wallz, loading, error, hasMore, onPageScroll,
+  loading, error, hasMore, onPageScroll, wallzData,
 }) {
   const observer = useRef();
   const lastWallzRef = useCallback((node) => {
@@ -16,18 +16,18 @@ export default function Gallery({
     });
     if (node) observer.current.observe(node);
   }, [loading, hasMore]);
-
-  const CreateEl = () => wallz.map((item, index) => {
-    if (wallz.length === index + 1) {
+  // console.log('gallery ', wallzData);
+  const CreateEl = () => wallzData.map((item, index) => {
+    if (wallzData.length === index + 1) {
       return (
-        <figure className="container-img" ref={lastWallzRef} key={item}>
-          <img src={item} className="gallery-img" alt={item} />
+        <figure className="container-img" ref={lastWallzRef} key={item.id}>
+          <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
         </figure>
       );
     }
     return (
-      <figure className="container-img" key={item}>
-        <img src={item} className="gallery-img" alt={item} />
+      <figure className="container-img" key={item.id}>
+        <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
       </figure>
     );
   });
