@@ -5,7 +5,6 @@ export default function Gallery({
   wallz, loading, error, hasMore, onPageScroll,
 }) {
   const observer = useRef();
-
   const lastWallzRef = useCallback((node) => {
     if (loading) return;
     if (!hasMore) return;
@@ -33,25 +32,44 @@ export default function Gallery({
     );
   });
 
+  const Loader = () => {
+    if (loading) {
+      return (
+        <div className="loader">
+          <div className="lds-roller">
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const Error = () => {
+    if (error) {
+      return (
+        <div className="Error">
+          <p>Error</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <>
       <div className="gallery">
         {CreateEl()}
+        {Loader()}
+        {Error()}
       </div>
-      <div className="loader">
-        {loading}
-        <div className="lds-roller">
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-        </div>
-      </div>
-      <div>{error && 'Error'}</div>
     </>
   );
 }

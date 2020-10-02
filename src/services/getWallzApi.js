@@ -37,6 +37,7 @@ export default function useGetWallz(q, categories, colors, sorting, page) {
         return;
       }
       setError(true);
+      setLoading(false);
     });
     return () => cancel();
   }, [q, categories, colors, sorting, page, hasMore]);

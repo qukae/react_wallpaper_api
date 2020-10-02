@@ -4,6 +4,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  min-height: 100vh;
+  padding-top: 100px;
 }
 .container-img{
   height: 243px;
@@ -16,6 +18,12 @@
   -webkit-box-shadow: 5px 6px 9px -3px rgba(0,0,0,1);
   -moz-box-shadow: 5px 6px 9px -3px rgba(0,0,0,1);
   box-shadow: 5px 6px 9px -3px rgba(0,0,0,1);
+  animation: appear 1.5s
+}
+
+@keyframes appear {
+  0% { left: 500px; opacity: 0; }
+  100% { left: 16px; opacity: 1; }
 }
 .loader {
   display: flex;

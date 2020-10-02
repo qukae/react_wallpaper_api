@@ -34,7 +34,6 @@ export default function App() {
   };
   const onPageScroll = () => {
     setPage((prevPage) => prevPage + 1);
-    console.log('scroll');
   };
 
   return (
