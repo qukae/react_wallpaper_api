@@ -5,6 +5,7 @@ export default function useGetWallz(q, categories, colors, sorting, page) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [wallz, setWallz] = useState([]);
+  const [data, setData] = useState({});
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
@@ -28,8 +29,9 @@ export default function useGetWallz(q, categories, colors, sorting, page) {
       },
       cancelToken: new axios.CancelToken((c) => { cancel = c; return c; }),
     }).then((res) => {
-      console.log(res);
+      setData(res);
       setWallz((prevWallz) => [...prevWallz, ...res.data.data.map((w) => w.thumbs.large)]);
+      console.log(res);
       setHasMore(res.data.data.length > 0);
       setLoading(false);
     }).catch((e) => {
@@ -43,6 +45,6 @@ export default function useGetWallz(q, categories, colors, sorting, page) {
   }, [q, categories, colors, sorting, page, hasMore]);
 
   return {
-    loading, error, wallz, hasMore,
+    loading, error, wallz, hasMore, data,
   };
 }

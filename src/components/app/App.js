@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow */
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Gallery from '../gallery/Gallery';
 import MainHeader from '../mainHeader/MainHeader';
 import MainFilter from '../mainFilter/MainFilter';
@@ -17,8 +18,9 @@ export default function App() {
     hasMore,
     loading,
     error,
+    data,
   } = getWallz(q, categories, colors, sorting, page);
-
+  console.log('app_data', data);
   const onSearch = (e) => {
     setQ(e);
     setPage(1);
@@ -38,10 +40,26 @@ export default function App() {
 
   return (
     <>
-      {/* {console.log('app_render')} */}
-      <MainHeader onSearch={(e) => { onSearch(e); }} onNavClick={(sorting) => { onNavClick(sorting); }} />
-      <MainFilter onSubmit={(categories, color) => { onFilterSubmit(categories, color); }} />
-      <Gallery wallz={wallz} page={page} loading={loading} error={error} hasMore={hasMore} onPageScroll={onPageScroll} />
+      <Router>
+        {/* {console.log('app_render')} */}
+        <Route
+          path="/"
+          render={() => (
+            <>
+              <MainHeader onSearch={(e) => { onSearch(e); }} onNavClick={(sorting) => { onNavClick(sorting); }} />
+              <MainFilter onSubmit={(categories, color) => { onFilterSubmit(categories, color); }} />
+            </>
+          )}
+        />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <Gallery wallz={wallz} page={page} loading={loading} error={error} hasMore={hasMore} onPageScroll={onPageScroll} />
+          )}
+        />
+
+      </Router>
     </>
   );
 }
