@@ -23,6 +23,9 @@ import {  faSearch, faTrashAlt  } from '@fortawesome/free-solid-svg-icons'
     this.props.history.push('/')
   }
   clear = () => {
+    if(this.state.input === ''){
+      return
+    }
     this.setState({
       input: ''
     })

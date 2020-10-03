@@ -27,12 +27,18 @@ export default function App() {
     setWallzData((prevWallzData) => [...prevWallzData, ...data]);
   }, [data]);
 
-  const onSearch = (e) => {
+  const onSearch = (q) => {
+    if (q === app_q) {
+      return;
+    }
     setWallzData([]);
-    setQ(e);
+    setQ(q);
     setPage(1);
   };
   const onFilterSubmit = (categories, colors) => {
+    if ((categories && colors) === (app_categories && app_colors)) {
+      return;
+    }
     setWallzData([]);
     setColors(colors);
     setCategories(categories);
@@ -58,7 +64,7 @@ export default function App() {
           path="/"
           render={() => (
             <>
-              <MainHeader onSearch={(e) => { onSearch(e); }} onNavClick={(sorting) => { onNavClick(sorting); }} />
+              <MainHeader onSearch={(q) => { onSearch(q); }} onNavClick={(sorting) => { onNavClick(sorting); }} />
               <MainFilter onSubmit={(categories, color) => { onFilterSubmit(categories, color); }} />
             </>
           )}
