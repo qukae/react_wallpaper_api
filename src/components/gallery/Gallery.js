@@ -1,5 +1,6 @@
 import React, { useRef, useCallback } from 'react';
 import './Gallery.css';
+import { Link } from 'react-router-dom';
 
 export default function Gallery({
   loading, error, hasMore, onPageScroll, wallzData,
@@ -21,13 +22,17 @@ export default function Gallery({
     if (wallzData.length === index + 1) {
       return (
         <figure className="container-img" ref={lastWallzRef} key={item.id}>
-          <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
+          <Link to="/w">
+            <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
+          </Link>
         </figure>
       );
     }
     return (
       <figure className="container-img" key={item.id}>
-        <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
+        <Link to="/w ">
+          <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
+        </Link>
       </figure>
     );
   });

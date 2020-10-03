@@ -6,6 +6,7 @@ import Gallery from '../gallery/Gallery';
 import MainHeader from '../mainHeader/MainHeader';
 import MainFilter from '../mainFilter/MainFilter';
 import useGetWallz from '../../services/getWallzApi';
+import Wpage from '../wpage/Wpage';
 
 export default function App() {
   const [q, setQ] = useState();
@@ -59,12 +60,18 @@ export default function App() {
             </>
           )}
         />
+
         <Route
           path="/"
           exact
           render={() => (
             <Gallery page={page} loading={loading} error={error} hasMore={hasMore} onPageScroll={onPageScroll} wallzData={wallzData} />
           )}
+        />
+        <Route
+          path="/w"
+          exact
+          component={(() => (<Wpage />))}
         />
 
       </Router>
