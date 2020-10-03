@@ -2,15 +2,15 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect, useState } from 'react';
 import './Wpage.css';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-function Wpage() {
+function Wpage({ key }) {
   const [zoomClass, setZoomClass] = useState('showcase-img-sm');
   console.log('wallzData');
 
   useEffect(() => {
     console.log('effect');
-  }, []);
+  }, [key]);
 
   const onZoom = () => {
     switch (zoomClass) {
@@ -28,11 +28,15 @@ function Wpage() {
     }
   };
   return (
-    <div className="showcase">
+
+    <div key={key} className="showcase">
       <div className="img-div">
-        <img onClick={onZoom} className={`showcase-img ${zoomClass}`} src="https://w.wallhaven.cc/full/2e/wallhaven-2ep8g6.jpg" alt="asd" />
+        <Link to="/">
+          <img onClick={onZoom} className={`showcase-img ${zoomClass}`} src="https://w.wallhaven.cc/full/2e/wallhaven-2ep8g6.jpg" alt="asd" />
+        </Link>
       </div>
     </div>
+
   );
 }
 

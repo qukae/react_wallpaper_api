@@ -46,7 +46,11 @@ export default function App() {
   const onPageScroll = () => {
     setPage((prevPage) => prevPage + 1);
   };
-
+  function Home() {
+    return (
+      <div>HOME</div>
+    );
+  }
   return (
     <>
       <Router>
@@ -60,18 +64,16 @@ export default function App() {
             </>
           )}
         />
-
+        <Route
+          path="/w/:id"
+          component={Wpage}
+        />
         <Route
           path="/"
           exact
           render={() => (
             <Gallery page={page} loading={loading} error={error} hasMore={hasMore} onPageScroll={onPageScroll} wallzData={wallzData} />
           )}
-        />
-        <Route
-          path="/w"
-          exact
-          component={(() => (<Wpage />))}
         />
 
       </Router>
