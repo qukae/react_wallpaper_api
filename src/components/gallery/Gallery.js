@@ -21,7 +21,7 @@ export default function Gallery({
   const CreateEl = () => wallzData.map((item, index) => {
     if (wallzData.length === index + 1) {
       return (
-        <Link to="/w" key={item.id}>
+        <Link to={`/w/${index}/${item.id}`} key={item.id}>
           <figure className="container-img" ref={lastWallzRef} >
             <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
           </figure>
@@ -29,7 +29,7 @@ export default function Gallery({
       );
     }
     return (
-      <Link to={`/w/${item.id}`} key={item.id}>
+      <Link to={`/w/${index}/${item.id}`} key={item.id}>
         <figure className="container-img">
           <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
         </figure>

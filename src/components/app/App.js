@@ -1,5 +1,5 @@
+/* eslint-disable camelcase */
 /* eslint-disable max-len */
-/* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Gallery from '../gallery/Gallery';
@@ -9,19 +9,19 @@ import useGetWallz from '../../services/getWallzApi';
 import Wpage from '../wpage/Wpage';
 
 export default function App() {
-  const [q, setQ] = useState();
-  const [categories, setCategories] = useState([1, 0, 0]);
-  const [colors, setColors] = useState(null);
-  const [sorting, setSorting] = useState('date_added');
-  const [page, setPage] = useState(1);
-  const [wallzData, setWallzData] = useState([]);
+  const [app_q, setQ] = useState();
+  const [app_categories, setCategories] = useState([1, 0, 0]);
+  const [app_colors, setColors] = useState(null);
+  const [app_sorting, setSorting] = useState('date_added');
+  const [app_page, setPage] = useState(1);
+  const [app_wallzData, setWallzData] = useState([]);
 
   const {
     hasMore,
     loading,
     error,
     data,
-  } = useGetWallz(q, categories, colors, sorting, page);
+  } = useGetWallz(app_q, app_categories, app_colors, app_sorting, app_page);
 
   useEffect(() => {
     setWallzData((prevWallzData) => [...prevWallzData, ...data]);
@@ -39,6 +39,9 @@ export default function App() {
     setPage(1);
   };
   const onNavClick = (sorting) => {
+    if (sorting === app_sorting) {
+      return;
+    }
     setWallzData([]);
     setSorting(sorting);
     setPage(1);
@@ -46,11 +49,7 @@ export default function App() {
   const onPageScroll = () => {
     setPage((prevPage) => prevPage + 1);
   };
-  function Home() {
-    return (
-      <div>HOME</div>
-    );
-  }
+
   return (
     <>
       <Router>
@@ -66,13 +65,15 @@ export default function App() {
         />
         <Route
           path="/w/:id"
-          component={Wpage}
+          render={() => (
+            <Wpage wallzData={app_wallzData} />
+          )}
         />
         <Route
           path="/"
           exact
           render={() => (
-            <Gallery page={page} loading={loading} error={error} hasMore={hasMore} onPageScroll={onPageScroll} wallzData={wallzData} />
+            <Gallery page={app_page} loading={loading} error={error} hasMore={hasMore} onPageScroll={onPageScroll} wallzData={app_wallzData} />
           )}
         />
 

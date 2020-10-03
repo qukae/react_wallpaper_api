@@ -1,12 +1,12 @@
 .showcase {
   min-height: 100vh;
   /* position: absolute; */
-  background-color: rgb(46, 46, 46);
+  background-color: #161616;
 
 }
 
 .showcase-img {
-  background-color: rgb(46, 46, 46);
+  background-color: #161616;
   position: absolute;
   top: 0;
   left: 0;
@@ -14,6 +14,11 @@
   bottom: 0;
   display: block;
   object-fit: contain;
+  animation: appear 1.5s
+}
+@keyframes appear {
+  0% {  opacity: 0; }
+  100% {  opacity: 1; }
 }
 .showcase-img-sm {
   cursor: zoom-in;
