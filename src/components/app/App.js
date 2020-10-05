@@ -36,9 +36,12 @@ export default function App() {
     setPage(1);
   };
   const onFilterSubmit = (categories, colors) => {
-    if ((categories && colors) === (app_categories && app_colors)) {
+    if ((categories === app_categories) && (colors === app_colors)) {
+      console.log(categories, colors);
+      console.log('ret');
       return;
     }
+    console.log('sub');
     setWallzData([]);
     setColors(colors);
     setCategories(categories);

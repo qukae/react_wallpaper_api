@@ -1,22 +1,40 @@
 .aside-wpage {
   padding-top: 100px;
+  animation: appear 1.5s;
+}
+.aside-wpage-hidden {
+  transform: translateX(-300px)
+  /* display: none; */
+}
+@keyframes appear {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.btn-hide {
+  position: absolute;
+  top: 100px;
+  left: 300px;
+  background-color:  #283d28;
 }
 .aside-div {
   padding-top: 100px;
   padding: 20px;
   height: 100%;
   background-color:#1B1B1B;
-
+  /* position: relative; */
 }
 .resolution {
   font-weight: 400;
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
   margin-bottom: 15px;
-  margin-left: 35px;
+  margin-left: 60px;
+}
+.colors-container{
+  margin-left: 10px;
 }
 .clr-item {
-  width: 40px;
+  width: 50px;
   height: 15px;
   display: inline-flex;
 }

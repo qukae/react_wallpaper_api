@@ -8,6 +8,12 @@ import Aside from './aside/Aside';
 
 function Wpage({ match }) {
   const [zoomClass, setZoomClass] = useState('showcase-img-sm');
+  const [asideHidden, setAsideHidden] = useState(false);
+
+  const onHideClick = () => {
+    setAsideHidden(!asideHidden);
+    console.log(asideHidden);
+  };
 
   const { wallData, loading, error } = useGetOneWall(match.params.id);
   // console.log(wallData);
@@ -70,8 +76,8 @@ function Wpage({ match }) {
   };
   return (
     <div className="wpage-container">
-      <div className="showcase">
-        {wallData ? <Aside wallData={wallData} /> : null}
+      <div className={`showcase ${asideHidden ? 'showcase-full' : null}`}>
+        {wallData ? <Aside wallData={wallData} onHideClick={onHideClick} asideHidden={asideHidden}/> : null}
         <div className="img-div">
           {Img()}
         </div>

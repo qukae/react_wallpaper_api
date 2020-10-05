@@ -1,17 +1,17 @@
 /* eslint-disable camelcase */
-import React from 'react';
+import React, {useState} from 'react';
 import './Aside.css';
 
-export default function Aside({wallData}) {
+export default function Aside({wallData, onHideClick, asideHidden}) {
 
+  console.log(asideHidden);
   const colors = (clrs) => {
-    console.log('clr');
     return clrs.map((clr) => (
       <div key={clr} className="clr-item" style={{ backgroundColor: clr }} />
     ));
   };
   const tags = (tgs) => tgs.map((tag) => (
-    <div key={tag} className="tag-item">{tag.name}</div>
+    <div key={tag.name} className="tag-item">{tag.name}</div>
   ));
 
   const properties = (wllData) => {
@@ -47,10 +47,18 @@ export default function Aside({wallData}) {
   };
 
   return (
-    <aside className="aside-wpage">
+    <aside className={`aside-wpage ${asideHidden ? 'aside-wpage-hidden' : null}`}>
       <div className="aside-div">
+        <button
+          className="btn-nav btn-nav-li btn-hide"
+          onClick={onHideClick}
+        >
+          hide
+        </button>
         <h5 className="resolution">{wallData.resolution}</h5>
-        {colors(wallData.colors)}
+          <div className="colors-container">
+          {colors(wallData.colors)}
+          </div>
         <h5>TAGS</h5>
         <div className="tags-container">
           {tags(wallData.tags)}
