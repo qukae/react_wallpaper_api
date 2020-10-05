@@ -4,8 +4,10 @@
     "Wpage",
     "camelcase",
     "clazz",
+    "clrs",
     "mathc",
     "noninteractive",
-    "toplist"
+    "toplist",
+    "uploader"
   ]
 }

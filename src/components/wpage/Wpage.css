@@ -1,10 +1,25 @@
+.wpage-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .showcase {
   min-height: 100vh;
   background-color: #161616;
-}
+  display: inline-grid;
+  grid-template-columns: 300px auto;
 
+}
+.img-div {
+  align-self: center;
+  justify-self: center;
+  display: flex;
+}
 .showcase-img {
-  display: block;
+  padding-top: 100px;
+  align-items: center;
+  justify-content: center;
   object-fit: contain;
   animation: appear 1.5s
 }
@@ -13,32 +28,19 @@
   100% {  opacity: 1; }
 }
 .showcase-img-sm {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   cursor: zoom-in;
-  padding-top: 100px;
   margin: auto;
-  max-width: 95%;
-  max-height: 95%;
+  max-width: 85%;
+  max-height: 85%;
 }
 .showcase-img-md {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   cursor: zoom-in;
-  padding-top: 100px;
   max-width: none;
   max-height: 100%;
   margin: auto;
 }
 .showcase-img-lg {
   cursor: zoom-out;
-  padding-top: 100px;
   max-width: none;
   max-height: none;
   margin: auto;
