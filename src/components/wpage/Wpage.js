@@ -1,18 +1,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Wpage.css';
 import { withRouter } from 'react-router-dom';
+import useGetOneWall from '../../services/getOneWallApi';
 
-function Wpage({ wallzData, match }) {
+function Wpage({ match }) {
   const [zoomClass, setZoomClass] = useState('showcase-img-sm');
-  console.log(wallzData);
-  console.log(match);
+  // console.log(wallzData);
+  // console.log(match);
 
-  useEffect(() => {
-    console.log('effect');
-  }, []);
-
+  const { wallData, loading, error } = useGetOneWall(match.params.id);
+  console.log(wallData);
   const onZoom = () => {
     switch (zoomClass) {
       case 'showcase-img-sm':
@@ -28,19 +27,56 @@ function Wpage({ wallzData, match }) {
         break;
     }
   };
-  return (
-
-    <div className="showcase">
-      <div className="img-div">
+  const Img = () => {
+    if (wallData) {
+      return (
         <img
           onClick={onZoom}
           className={`showcase-img ${zoomClass}`}
-          src={wallzData[match.params.id].path}
+          src={wallData.data.data.path}
           alt="asd"
         />
+      );
+    }
+    return null;
+  };
+  const Loader = () => {
+    if (loading) {
+      return (
+        <div className="loader">
+          <div className="lds-roller">
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+  const Error = () => {
+    if (error) {
+      return (
+        <div className="Error">
+          <p>Error</p>
+        </div>
+      );
+    }
+    return null;
+  };
+  return (
+    <div className="showcase">
+      <div className="img-div">
+        {Img()}
+        {Loader()}
+        {Error()}
       </div>
     </div>
-
   );
 }
 

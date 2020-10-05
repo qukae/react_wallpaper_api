@@ -1,17 +1,9 @@
 .showcase {
   min-height: 100vh;
-  /* position: absolute; */
   background-color: #161616;
-
 }
 
 .showcase-img {
-  background-color: #161616;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   display: block;
   object-fit: contain;
   animation: appear 1.5s
@@ -21,6 +13,11 @@
   100% {  opacity: 1; }
 }
 .showcase-img-sm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   cursor: zoom-in;
   padding-top: 100px;
   margin: auto;
@@ -28,6 +25,11 @@
   max-height: 95%;
 }
 .showcase-img-md {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   cursor: zoom-in;
   padding-top: 100px;
   max-width: none;
@@ -39,6 +41,6 @@
   padding-top: 100px;
   max-width: none;
   max-height: none;
-  /* margin-top: auto;
-  margin-bottom: auto; */
+  margin: auto;
 }
+

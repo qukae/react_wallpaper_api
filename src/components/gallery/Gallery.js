@@ -17,19 +17,19 @@ export default function Gallery({
     });
     if (node) observer.current.observe(node);
   }, [loading, hasMore]);
-  // console.log('gallery ', wallzData);
+
   const CreateEl = () => wallzData.map((item, index) => {
     if (wallzData.length === index + 1) {
       return (
-        <Link to={`/w/${index}/${item.id}`} key={item.id}>
-          <figure className="container-img" ref={lastWallzRef} >
+        <Link to={`/w/${item.id}`} key={item.id}>
+          <figure className="container-img" ref={lastWallzRef}>
             <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
           </figure>
         </Link>
       );
     }
     return (
-      <Link to={`/w/${index}/${item.id}`} key={item.id}>
+      <Link to={`/w/${item.id}`} key={item.id}>
         <figure className="container-img">
           <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
         </figure>
