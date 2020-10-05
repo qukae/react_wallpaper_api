@@ -6,8 +6,6 @@ export default function useGetOneWall(id) {
   const [error, setError] = useState(false);
   const [wallData, setWallData] = useState();
 
-  // useEffect(() => setWallData([]));
-
   useEffect(() => {
     setLoading(true);
     setError(false);
@@ -17,8 +15,7 @@ export default function useGetOneWall(id) {
       url: `https://cors-anywhere.herokuapp.com/https://wallhaven.cc/api/v1/w/${id}`,
       cancelToken: new axios.CancelToken((c) => { cancel = c; return c; }),
     }).then((res) => {
-      console.log(res);
-      setWallData(res);
+      setWallData(res.data.data);
       setLoading(false);
     }).catch((e) => {
       if (axios.isCancel(e)) {

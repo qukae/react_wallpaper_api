@@ -7,8 +7,6 @@ import useGetOneWall from '../../services/getOneWallApi';
 
 function Wpage({ match }) {
   const [zoomClass, setZoomClass] = useState('showcase-img-sm');
-  // console.log(wallzData);
-  // console.log(match);
 
   const { wallData, loading, error } = useGetOneWall(match.params.id);
   console.log(wallData);
@@ -33,7 +31,7 @@ function Wpage({ match }) {
         <img
           onClick={onZoom}
           className={`showcase-img ${zoomClass}`}
-          src={wallData.data.data.path}
+          src={wallData.path}
           alt="asd"
         />
       );
