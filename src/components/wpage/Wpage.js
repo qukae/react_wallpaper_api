@@ -4,12 +4,13 @@ import React, { useState } from 'react';
 import './Wpage.css';
 import { withRouter } from 'react-router-dom';
 import useGetOneWall from '../../services/getOneWallApi';
+import Aside from './aside/Aside';
 
 function Wpage({ match }) {
   const [zoomClass, setZoomClass] = useState('showcase-img-sm');
 
   const { wallData, loading, error } = useGetOneWall(match.params.id);
-  console.log(wallData);
+  // console.log(wallData);
   const onZoom = () => {
     switch (zoomClass) {
       case 'showcase-img-sm':
@@ -32,7 +33,7 @@ function Wpage({ match }) {
           onClick={onZoom}
           className={`showcase-img ${zoomClass}`}
           src={wallData.path}
-          alt="asd"
+          alt={wallData.id}
         />
       );
     }
@@ -68,11 +69,14 @@ function Wpage({ match }) {
     return null;
   };
   return (
-    <div className="showcase">
-      <div className="img-div">
-        {Img()}
-        {Loader()}
+    <div className="wpage-container">
+      <div className="showcase">
+        {wallData ? <Aside wallData={wallData} /> : null}
+        <div className="img-div">
+          {Img()}
+        </div>
         {Error()}
+        {Loader()}
       </div>
     </div>
   );
