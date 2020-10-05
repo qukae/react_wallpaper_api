@@ -1,8 +1,9 @@
 import React, { useRef, useCallback } from 'react';
 import './Gallery.css';
+import { Link } from 'react-router-dom';
 
 export default function Gallery({
-  wallz, loading, error, hasMore, onPageScroll,
+  loading, error, hasMore, onPageScroll, wallzData,
 }) {
   const observer = useRef();
   const lastWallzRef = useCallback((node) => {
@@ -17,18 +18,22 @@ export default function Gallery({
     if (node) observer.current.observe(node);
   }, [loading, hasMore]);
 
-  const CreateEl = () => wallz.map((item, index) => {
-    if (wallz.length === index + 1) {
+  const CreateEl = () => wallzData.map((item, index) => {
+    if (wallzData.length === index + 1) {
       return (
-        <figure className="container-img" ref={lastWallzRef} key={item}>
-          <img src={item} className="gallery-img" alt={item} />
-        </figure>
+        <Link to={`/w/${item.id}`} key={item.id}>
+          <figure className="container-img" ref={lastWallzRef}>
+            <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
+          </figure>
+        </Link>
       );
     }
     return (
-      <figure className="container-img" key={item}>
-        <img src={item} className="gallery-img" alt={item} />
-      </figure>
+      <Link to={`/w/${item.id}`} key={item.id}>
+        <figure className="container-img">
+          <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
+        </figure>
+      </Link>
     );
   });
 

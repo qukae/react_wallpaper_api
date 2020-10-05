@@ -1,28 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './HeaderNav.css';
 
-const HeaderNav = ({onNavClick}) => {
-  return (
-    <nav>
-      <ul className="header-nav">
+const HeaderNav = ({ onNavClick }) => (
+  <nav>
+    <ul className="header-nav">
+      <Link to="/">
         <li className="btn-nav-li">
-          <a href="#!" onClick={() => onNavClick('date_added')} className="btn-nav">Latest</a>
+          <button type="button" onClick={() => onNavClick('date_added')} className="btn-nav">Latest</button>
         </li>
+      </Link>
+      <Link to="/">
         <li className="btn-nav-li">
-          <a href="#!" onClick={() => onNavClick('views')} className="btn-nav">Most viewed</a>
+          <button type="button" onClick={() => onNavClick('views')} className="btn-nav">Most viewed</button>
         </li>
+      </Link>
+      <Link to="/">
         <li className="btn-nav-li">
-          <a href="#!" onClick={() => onNavClick('toplist')} className="btn-nav">Toplist</a>
+          <button type="button" onClick={() => onNavClick('toplist')} className="btn-nav">Toplist</button>
         </li>
+      </Link>
+      <Link to="/">
         <li className="btn-nav-li">
-          <a href="#!" onClick={() => onNavClick('random')} className="btn-nav">Random</a>
+          <button type="button" onClick={() => onNavClick('random')} className="btn-nav">Random</button>
         </li>
+      </Link>
+      <Link to="/">
         <li className="btn-nav-li">
-          <a href="#!" onClick={() => onNavClick('date_added')} className="btn-nav">About</a>
+          <button type="button" onClick={() => onNavClick('date_added')} className="btn-nav">About</button>
         </li>
-      </ul>
-    </nav>
-  );
-};
+      </Link>
+    </ul>
+  </nav>
+);
 
 export default HeaderNav;

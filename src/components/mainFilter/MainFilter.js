@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Categories from './categories/Categories';
 import Colors from './colors/Colors';
+import {withRouter} from 'react-router-dom'
 import './MainFilter.css';
 
-export default class MainFilter extends Component {
+ class MainFilter extends Component {
 
   state = {
     categories: [1,0,0],
@@ -28,6 +29,7 @@ export default class MainFilter extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     this.props.onSubmit(this.state.categories, this.state.color)
+    this.props.history.push('/')
   }
 
   render() {
@@ -37,11 +39,11 @@ export default class MainFilter extends Component {
       <>
         <form onSubmit={this.onSubmit} className="main-filter">
           <Categories onTypeClick={(indx) => this.onCategoriesClick(indx)} categories={categories}/>
-
           <Colors  onColorClick={(color) => this.onColorClick(color)}/>
-          <button type="submit" className="filter-btn">Submit</button>
+            <button type="submit" className="filter-btn">Submit</button>
         </form>
       </>
     );
   }
 }
+export default withRouter(MainFilter)

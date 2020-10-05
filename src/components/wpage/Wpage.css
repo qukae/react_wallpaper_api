@@ -1,0 +1,46 @@
+.showcase {
+  min-height: 100vh;
+  background-color: #161616;
+}
+
+.showcase-img {
+  display: block;
+  object-fit: contain;
+  animation: appear 1.5s
+}
+@keyframes appear {
+  0% {  opacity: 0; }
+  100% {  opacity: 1; }
+}
+.showcase-img-sm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: zoom-in;
+  padding-top: 100px;
+  margin: auto;
+  max-width: 95%;
+  max-height: 95%;
+}
+.showcase-img-md {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: zoom-in;
+  padding-top: 100px;
+  max-width: none;
+  max-height: 100%;
+  margin: auto;
+}
+.showcase-img-lg {
+  cursor: zoom-out;
+  padding-top: 100px;
+  max-width: none;
+  max-height: none;
+  margin: auto;
+}
+

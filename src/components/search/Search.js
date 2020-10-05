@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom'
 import './Search.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {  faSearch, faTrashAlt  } from '@fortawesome/free-solid-svg-icons'
 
-export default class Search extends Component {
+ class Search extends Component {
   state = {
     input: ''
   }
@@ -19,13 +20,17 @@ export default class Search extends Component {
     if (this.state.input) {
       this.props.onSearch(this.state.input)
     }
+    this.props.history.push('/')
   }
   clear = () => {
+    if(this.state.input === ''){
+      return
+    }
     this.setState({
       input: ''
     })
     this.props.onSearch('')
-
+    this.props.history.push('/')
   }
 
 
@@ -51,3 +56,4 @@ export default class Search extends Component {
     );
   }
 }
+export default withRouter(Search)
