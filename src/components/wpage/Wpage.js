@@ -77,7 +77,13 @@ function Wpage({ match }) {
   return (
     <div className="wpage-container">
       <div className={`showcase ${asideHidden ? 'showcase-full' : null}`}>
-        {wallData ? <Aside wallData={wallData} onHideClick={onHideClick} asideHidden={asideHidden}/> : null}
+        {wallData ? (
+          <Aside
+            wallData={wallData}
+            onHideClick={onHideClick}
+            asideHidden={asideHidden}
+          />
+        ) : null}
         <div className="img-div">
           {Img()}
         </div>
