@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
+import DispatchContext from '../../app/DispatchContext';
 import './Aside.css';
 
 export default function Aside({wallData, onHideClick, asideHidden}) {
 
-  console.log(asideHidden);
   const colors = (clrs) => {
     return clrs.map((clr) => (
       <div key={clr} className="clr-item" style={{ backgroundColor: clr }} />
@@ -18,7 +18,6 @@ export default function Aside({wallData, onHideClick, asideHidden}) {
     const {
       uploader, created_at, category, file_size, views, favorites, file_type,
     } = wllData;
-
     return (
       <dl className="prop-dl">
         <div className="prop-left">

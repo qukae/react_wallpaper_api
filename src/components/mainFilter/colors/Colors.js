@@ -25,9 +25,9 @@ const Colors = ({ onColorClick }) => {
     setOpen(false);
   };
 
-  const handleChange = (item) => {
-    onColorClick(item);
-    setBtnColor(item || '313131');
+  const handleChange = (color) => {
+    onColorClick(color);
+    setBtnColor(color || '313131');
     setOpen(false);
   };
 
@@ -46,15 +46,15 @@ const Colors = ({ onColorClick }) => {
   //  click outside end
 
   const createColorsEl = () => {
-    const el = colors.map((item) => {
-      if (item === 'reset') {
+    const el = colors.map((color) => {
+      if (color === 'reset') {
         return (
           <button onClick={() => handleChange(null)} type="button" className="colors-btn" key="reset" style={{ backgroundColor: 'white' }}>clear</button>
         );
       }
-      const colorItem = `#${item}`;
+      const colorHex = `#${color}`;
       return (
-        <button onClick={() => handleChange(item)} type="button" className="colors-btn" key={colorItem} style={{ backgroundColor: colorItem }} />
+        <button onClick={() => handleChange(color)} type="button" className="colors-btn" key={colorHex} style={{ backgroundColor: colorHex }} />
       );
     });
     return el;

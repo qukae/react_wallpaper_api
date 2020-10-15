@@ -1,18 +1,22 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useContext } from 'react';
 import './Gallery.css';
 import { Link } from 'react-router-dom';
+import StateContext from '../app/StateContext';
+import DispatchContext from '../app/DispatchContext';
 
-export default function Gallery({
-  loading, error, hasMore, onPageScroll, wallzData,
-}) {
+export default function Gallery({ loading, error, hasMore }) {
+  const { wallzData } = useContext(StateContext);
+  const appDispatch = useContext(DispatchContext);
+
   const observer = useRef();
+
   const lastWallzRef = useCallback((node) => {
     if (loading) return;
     if (!hasMore) return;
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        onPageScroll();
+        appDispatch({ type: 'page', payload: 1 });
       }
     });
     if (node) observer.current.observe(node);

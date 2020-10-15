@@ -2,7 +2,7 @@
 import React from 'react';
 import '../MainFilter.css';
 
-const Categories = ({ categories, onTypeClick }) => {
+const Categories = ({ categories, onCategoriesClick }) => {
   const clazz = 'filter-btn-active';
 
   return (
@@ -10,7 +10,7 @@ const Categories = ({ categories, onTypeClick }) => {
       <button
         type="button"
         className={`filter-btn ${categories[0] ? clazz : null}`}
-        onClick={() => onTypeClick(0)}
+        onClick={() => onCategoriesClick(0)}
       >
         General
       </button>
@@ -18,7 +18,7 @@ const Categories = ({ categories, onTypeClick }) => {
       <button
         type="button"
         className={`filter-btn ${categories[1] ? clazz : null}`}
-        onClick={() => onTypeClick(1)}
+        onClick={() => onCategoriesClick(1)}
       >
         Anime
       </button>
@@ -26,7 +26,7 @@ const Categories = ({ categories, onTypeClick }) => {
       <button
         type="button"
         className={`filter-btn ${categories[2] ? clazz : null}`}
-        onClick={() => onTypeClick(2)}
+        onClick={() => onCategoriesClick(2)}
       >
         People
       </button>

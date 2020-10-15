@@ -12,11 +12,11 @@ function Wpage({ match }) {
 
   const onHideClick = () => {
     setAsideHidden(!asideHidden);
-    console.log(asideHidden);
   };
 
+  // custom hook useGetOneWall gets one wallpaper data from server using axios and image id
   const { wallData, loading, error } = useGetOneWall(match.params.id);
-  // console.log(wallData);
+
   const onZoom = () => {
     switch (zoomClass) {
       case 'showcase-img-sm':
