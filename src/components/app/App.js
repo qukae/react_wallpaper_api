@@ -75,7 +75,6 @@ export default function App() {
   };
 
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
-
   // Custom hook useGetWallz gets wallpapers data as 'data' from server using axios
   const {
     hasMore,

@@ -34,6 +34,7 @@
   margin-left: 10px;
 }
 .clr-item {
+  cursor: pointer;
   width: 50px;
   height: 15px;
   display: inline-flex;
@@ -43,6 +44,7 @@
   flex-wrap: wrap;
 }
 .tag-item{
+  cursor: pointer;
   padding: 2px 5px;
   margin: 5px 10px;
   background-color: #283d28;

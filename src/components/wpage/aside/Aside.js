@@ -1,17 +1,32 @@
 /* eslint-disable camelcase */
 import React, {useContext} from 'react';
+import { withRouter } from 'react-router-dom'
 import DispatchContext from '../../app/DispatchContext';
 import './Aside.css';
 
-export default function Aside({wallData, onHideClick, asideHidden}) {
+function Aside({wallData, onHideClick, asideHidden, ...props}) {
+  const appDispatch = useContext(DispatchContext);
+
+  const onColorClick = (clr) => {
+    const color = clr.slice(1);
+    appDispatch({type: 'colors', payload: color})
+    props.history.push('/');
+  }
+
+  const onTagClick = (tag) => {
+    appDispatch({type: 'search_q', payload: tag})
+    props.history.push('/');
+  }
 
   const colors = (clrs) => {
     return clrs.map((clr) => (
-      <div key={clr} className="clr-item" style={{ backgroundColor: clr }} />
+      <div key={clr} className="clr-item" style={{ backgroundColor: clr }} onClick={() => onColorClick(clr)} />
     ));
   };
   const tags = (tgs) => tgs.map((tag) => (
-    <div key={tag.name} className="tag-item">{tag.name}</div>
+    <div key={tag.name} className="tag-item" onClick={() => onTagClick(tag.name)}>
+      {tag.name}
+    </div>
   ));
 
   const properties = (wllData) => {
@@ -70,3 +85,5 @@ export default function Aside({wallData, onHideClick, asideHidden}) {
     </aside>
   );
 }
+
+export default withRouter(Aside);
