@@ -3,14 +3,24 @@
 import React, { useState } from 'react';
 import './Wpage.css';
 import { withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import useGetOneWall from '../../services/getOneWallApi';
 import Aside from './aside/Aside';
+import Loader from '../utils/Loader';
+import Error from '../utils/Error';
 
 function Wpage({ match }) {
   const [zoomClass, setZoomClass] = useState('showcase-img-sm');
+  const [asideHidden, setAsideHidden] = useState(false);
 
+  const onHideClick = () => {
+    setAsideHidden(!asideHidden);
+  };
+
+  // custom hook useGetOneWall gets one wallpaper data from server using axios and image id
   const { wallData, loading, error } = useGetOneWall(match.params.id);
-  // console.log(wallData);
+
   const onZoom = () => {
     switch (zoomClass) {
       case 'showcase-img-sm':
@@ -39,44 +49,29 @@ function Wpage({ match }) {
     }
     return null;
   };
-  const Loader = () => {
-    if (loading) {
-      return (
-        <div className="loader">
-          <div className="lds-roller">
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-          </div>
-        </div>
-      );
-    }
-    return null;
-  };
-  const Error = () => {
-    if (error) {
-      return (
-        <div className="Error">
-          <p>Error</p>
-        </div>
-      );
-    }
-    return null;
-  };
+
   return (
     <div className="wpage-container">
-      <div className="showcase">
-        {wallData ? <Aside wallData={wallData} /> : null}
+      <div className={`showcase ${asideHidden ? 'showcase-full' : ''}`}>
+        {wallData ? (
+          <Aside
+            wallData={wallData}
+            onHideClick={onHideClick}
+            asideHidden={asideHidden}
+          />
+        ) : null}
         <div className="img-div">
           {Img()}
+          <button
+            type="button"
+            className="btn-hide"
+            onClick={onHideClick}
+          >
+            <FontAwesomeIcon className={asideHidden ? 'btn-hide-ico-right' : 'btn-hide-ico-left'} icon={faChevronLeft} />
+          </button>
         </div>
-        {Error()}
-        {Loader()}
+        {error ? Error() : null}
+        {loading ? Loader() : null}
       </div>
     </div>
   );

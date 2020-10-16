@@ -1,7 +1,13 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable camelcase */
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { useImmerReducer } from 'use-immer';
+
+import StateContext from './StateContext';
+import DispatchContext from './DispatchContext';
+
 import Gallery from '../gallery/Gallery';
 import MainHeader from '../mainHeader/MainHeader';
 import MainFilter from '../mainFilter/MainFilter';
@@ -9,81 +15,112 @@ import useGetWallz from '../../services/getWallzApi';
 import Wpage from '../wpage/Wpage';
 
 export default function App() {
-  const [app_q, setQ] = useState();
-  const [app_categories, setCategories] = useState([1, 0, 0]);
-  const [app_colors, setColors] = useState(null);
-  const [app_sorting, setSorting] = useState('date_added');
-  const [app_page, setPage] = useState(1);
-  const [app_wallzData, setWallzData] = useState([]);
+  function appReducer(draft, action) {
+    switch (action.type) {
+      case 'search_q':
+        if (draft.search_q === action.payload) {
+          return;
+        }
+        draft.search_q = action.payload;
+        break;
 
+      case 'categories':
+        if (draft.categories[action.payload]) {
+          draft.categories[action.payload] = 0;
+        } else {
+          draft.categories[action.payload] = 1;
+        }
+        break;
+
+      case 'colors':
+        if (draft.colors === action.payload) {
+          return;
+        }
+        draft.colors = action.payload;
+        break;
+
+      case 'sorting':
+        if (draft.sorting === action.payload) {
+          return;
+        }
+        draft.sorting = action.payload;
+        break;
+
+      case 'page':
+        draft.page += action.payload;
+        break;
+
+      case 'wallzData':
+        if (draft.page === 1) {
+          draft.wallzData = action.payload;
+          return;
+        }
+        draft.wallzData = [...draft.wallzData, ...action.payload];
+        break;
+
+      case 'getWallz':
+        draft.page = 1;
+        draft.wallzData = [];
+        draft.getWallz = !draft.getWallz;
+        break;
+
+      default:
+        break;
+    }
+  }
+  const initialState = {
+    search_q: '',
+    categories: [1, 1, 0],
+    colors: '',
+    sorting: 'date_added',
+    page: 1,
+    wallzData: [],
+    getWallz: 0,
+  };
+
+  const [state, dispatch] = useImmerReducer(appReducer, initialState);
+
+  // Custom hook useGetWallz gets wallpapers data as 'data' from server using axios
   const {
     hasMore,
     loading,
     error,
     data,
-  } = useGetWallz(app_q, app_categories, app_colors, app_sorting, app_page);
+  } = useGetWallz(state.search_q, state.categories, state.colors, state.sorting, state.page, state.getWallz);
 
   useEffect(() => {
-    setWallzData((prevWallzData) => [...prevWallzData, ...data]);
+    dispatch({ type: 'wallzData', payload: data });
   }, [data]);
 
-  const onSearch = (q) => {
-    if (q === app_q) {
-      return;
-    }
-    setWallzData([]);
-    setQ(q);
-    setPage(1);
-  };
-  const onFilterSubmit = (categories, colors) => {
-    if ((categories && colors) === (app_categories && app_colors)) {
-      return;
-    }
-    setWallzData([]);
-    setColors(colors);
-    setCategories(categories);
-    setPage(1);
-  };
-  const onNavClick = (sorting) => {
-    if (sorting === app_sorting) {
-      return;
-    }
-    setWallzData([]);
-    setSorting(sorting);
-    setPage(1);
-  };
-  const onPageScroll = () => {
-    setPage((prevPage) => prevPage + 1);
-  };
-
   return (
-    <>
-      <Router>
-        {/* {console.log('app_render')} */}
-        <Route
-          path="/"
-          render={() => (
-            <>
-              <MainHeader onSearch={(q) => { onSearch(q); }} onNavClick={(sorting) => { onNavClick(sorting); }} />
-              <MainFilter onSubmit={(categories, color) => { onFilterSubmit(categories, color); }} />
-            </>
-          )}
-        />
-        <Route
-          path="/w/:id"
-          render={() => (
-            <Wpage wallzData={app_wallzData} />
-          )}
-        />
-        <Route
-          path="/"
-          exact
-          render={() => (
-            <Gallery page={app_page} loading={loading} error={error} hasMore={hasMore} onPageScroll={onPageScroll} wallzData={app_wallzData} />
-          )}
-        />
+    <StateContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
+        <Router>
+          <Route
+            path="/"
+            render={() => (
+              <>
+                <MainHeader />
+                <MainFilter />
+              </>
+            )}
+          />
+          <Route
+            path="/w/:id"
+            render={() => (
+              <Wpage />
+            )}
+          />
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <Gallery loading={loading} error={error} hasMore={hasMore} />
+            )}
+          />
 
-      </Router>
-    </>
+        </Router>
+      </DispatchContext.Provider>
+    </StateContext.Provider>
   );
 }

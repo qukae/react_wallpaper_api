@@ -1,49 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState, useContext } from 'react';
+import { withRouter } from 'react-router-dom';
+import DispatchContext from '../app/DispatchContext';
+
 import Categories from './categories/Categories';
 import Colors from './colors/Colors';
-import {withRouter} from 'react-router-dom'
 import './MainFilter.css';
 
- class MainFilter extends Component {
+const MainFilter = (props) => {
+  const appDispatch = useContext(DispatchContext);
 
-  state = {
-    categories: [1,0,0],
-    color: null,
-  }
+  const [categories, setCategories] = useState([1, 1, 0]);
 
-
-  onColorClick = (color) => {
-      this.setState({
-        color: color
-      })
-  }
-
-  onCategoriesClick = (indx) => {
-    this.setState(({categories}) => {
-      const oldEl = categories[indx]
-      const newEl = oldEl ? 0 : 1
-      return {categories: [...categories.slice(0, indx), newEl, ...categories.slice(indx+1)]}
-    })
+  const onCategoriesClick = (indx) => {
+    setCategories((prevState) => {
+      const newElement = prevState[indx] ? 0 : 1;
+      return [...prevState.slice(0, indx), newElement, ...prevState.slice(indx + 1)];
+    });
   };
 
-  onSubmit = (e) => {
-    e.preventDefault()
-    this.props.onSubmit(this.state.categories, this.state.color)
-    this.props.history.push('/')
-  }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    appDispatch({ type: 'getWallz' });
+    props.history.push('/');
+  };
 
-  render() {
-    const {categories} = this.state
+  return (
+    <>
+      <form onSubmit={onSubmit} className="main-filter">
+        <Categories onCategoriesClick={(indx) => onCategoriesClick(indx)} categories={categories} />
+        <Colors />
+        <button type="submit" className="filter-btn">Submit</button>
+      </form>
+    </>
+  );
+};
 
-    return (
-      <>
-        <form onSubmit={this.onSubmit} className="main-filter">
-          <Categories onTypeClick={(indx) => this.onCategoriesClick(indx)} categories={categories}/>
-          <Colors  onColorClick={(color) => this.onColorClick(color)}/>
-            <button type="submit" className="filter-btn">Submit</button>
-        </form>
-      </>
-    );
-  }
-}
-export default withRouter(MainFilter)
+export default withRouter(MainFilter);

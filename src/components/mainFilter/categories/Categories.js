@@ -1,32 +1,39 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useContext } from 'react';
+import DispatchContext from '../../app/DispatchContext';
+import StateContext from '../../app/StateContext';
 import '../MainFilter.css';
 
-const Categories = ({ categories, onTypeClick }) => {
+const Categories = () => {
   const clazz = 'filter-btn-active';
+  const appDispatch = useContext(DispatchContext);
+  const appState = useContext(StateContext);
 
+  const onCategoriesClick = (indx) => {
+    appDispatch({ type: 'categories', payload: indx });
+  };
   return (
     <div>
       <button
         type="button"
-        className={`filter-btn ${categories[0] ? clazz : null}`}
-        onClick={() => onTypeClick(0)}
+        className={`filter-btn ${appState.categories[0] ? clazz : null}`}
+        onClick={() => onCategoriesClick(0)}
       >
         General
       </button>
 
       <button
         type="button"
-        className={`filter-btn ${categories[1] ? clazz : null}`}
-        onClick={() => onTypeClick(1)}
+        className={`filter-btn ${appState.categories[1] ? clazz : null}`}
+        onClick={() => onCategoriesClick(1)}
       >
         Anime
       </button>
 
       <button
         type="button"
-        className={`filter-btn ${categories[2] ? clazz : null}`}
-        onClick={() => onTypeClick(2)}
+        className={`filter-btn ${appState.categories[2] ? clazz : null}`}
+        onClick={() => onCategoriesClick(2)}
       >
         People
       </button>

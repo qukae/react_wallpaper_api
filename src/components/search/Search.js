@@ -1,59 +1,49 @@
-import React, { Component } from 'react';
-import {withRouter} from 'react-router-dom'
+/* eslint-disable camelcase */
 import './Search.css';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {  faSearch, faTrashAlt  } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
- class Search extends Component {
-  state = {
-    input: ''
-  }
+import React, { useContext } from 'react';
+import { withRouter } from 'react-router-dom';
+import DispatchContext from '../app/DispatchContext';
+import StateContext from '../app/StateContext';
 
-  onChangeInput = (e) => {
-    this.setState({
-      input: e.target.value
-    })
-  }
+const Search = (props) => {
+  const appDispatch = useContext(DispatchContext);
+  const appState = useContext(StateContext);
 
-  onSubmit = (e) => {
-    e.preventDefault()
-    if (this.state.input) {
-      this.props.onSearch(this.state.input)
-    }
-    this.props.history.push('/')
-  }
-  clear = () => {
-    if(this.state.input === ''){
-      return
-    }
-    this.setState({
-      input: ''
-    })
-    this.props.onSearch('')
-    this.props.history.push('/')
-  }
+  const onChange = (search_q) => {
+    appDispatch({ type: 'search_q', payload: search_q });
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    props.history.push('/');
+    appDispatch({ type: 'getWallz' });
+  };
 
+  const clear = () => {
+    appDispatch({ type: 'search_q', payload: '' });
+    appDispatch({ type: 'getWallz' });
+    props.history.push('/');
+  };
 
-  render() {
-    return (
-      <form onSubmit={this.onSubmit} className="search">
-        <input
-          value={this.state.input}
-          onChange={this.onChangeInput}
-          className="search-input"
-          type="text"
-          placeholder="Search..."
-        />
-          <button className="btn-search btn-search-submit" type="submit">
+  return (
+    <form onSubmit={onSubmit} className="search">
+      <input
+        value={appState.search_q}
+        onChange={(e) => onChange(e.target.value)}
+        className="search-input"
+        type="text"
+        placeholder="Search..."
+      />
+      <button className="btn-search btn-search-submit" type="submit">
 
-          <FontAwesomeIcon className="ico" icon={faSearch} />
-          </button>
-          <button className="btn-search btn-search-clear" type="button" onClick={this.clear}>
-          <FontAwesomeIcon className="ico" icon={faTrashAlt} />
-          </button>
-
-      </form>
-    );
-  }
-}
-export default withRouter(Search)
+        <FontAwesomeIcon className="ico" icon={faSearch} />
+      </button>
+      <button className="btn-search btn-search-clear" type="button" onClick={clear}>
+        <FontAwesomeIcon className="ico" icon={faTrashAlt} />
+      </button>
+    </form>
+  );
+};
+export default withRouter(Search);

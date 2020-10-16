@@ -1,22 +1,25 @@
 .wpage-container{
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .showcase {
   min-height: 100vh;
+  width: 100%;
   background-color: #161616;
   display: inline-grid;
   grid-template-columns: 300px auto;
-
+  justify-self: center;
+}
+.showcase-full {
+  grid-template-columns: 0px auto
 }
 .img-div {
-  align-self: center;
-  justify-self: center;
   display: flex;
+  position: relative;
+  min-height: 100%;
 }
 .showcase-img {
+  position: absolute;
+  margin: auto;
   padding-top: 100px;
   align-items: center;
   justify-content: center;
@@ -28,21 +31,48 @@
   100% {  opacity: 1; }
 }
 .showcase-img-sm {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   cursor: zoom-in;
   margin: auto;
-  max-width: 85%;
-  max-height: 85%;
+  max-width: 95%;
+  max-height: 95%;
 }
 .showcase-img-md {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   cursor: zoom-in;
   max-width: none;
   max-height: 100%;
-  margin: auto;
 }
 .showcase-img-lg {
+  top: 0;
+  left: 0;
   cursor: zoom-out;
   max-width: none;
   max-height: none;
-  margin: auto;
 }
-
+.btn-hide {
+  position: absolute;
+  top: 120px;
+  left: 0;
+  background-color:  #252525;
+  border: 0;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  color: #DDDDDD;
+  padding: 5px 12px 5px 3px;
+}
+.btn-hide:active, .btn-hide:focus {
+  outline: none;
+}
+.btn-hide-ico-left {
+  transform: scale(1.5);
+}
+.btn-hide-ico-right {
+  transform: scale(-1.5);
+}
