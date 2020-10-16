@@ -21,26 +21,21 @@ export default function App() {
         if (draft.search_q === action.payload) {
           return;
         }
-        draft.wallzData = [];
-        draft.page = 1;
         draft.search_q = action.payload;
         break;
 
       case 'categories':
-        if (draft.categories.join('') === action.payload.join('')) {
-          return;
+        if (draft.categories[action.payload]) {
+          draft.categories[action.payload] = 0;
+        } else {
+          draft.categories[action.payload] = 1;
         }
-        draft.wallzData = [];
-        draft.page = 1;
-        draft.categories = action.payload;
         break;
 
       case 'colors':
         if (draft.colors === action.payload) {
           return;
         }
-        draft.wallzData = [];
-        draft.page = 1;
         draft.colors = action.payload;
         break;
 
@@ -48,8 +43,6 @@ export default function App() {
         if (draft.sorting === action.payload) {
           return;
         }
-        draft.wallzData = [];
-        draft.page = 1;
         draft.sorting = action.payload;
         break;
 
@@ -58,7 +51,17 @@ export default function App() {
         break;
 
       case 'wallzData':
+        if (draft.page === 1) {
+          draft.wallzData = action.payload;
+          return;
+        }
         draft.wallzData = [...draft.wallzData, ...action.payload];
+        break;
+
+      case 'getWallz':
+        draft.page = 1;
+        draft.wallzData = [];
+        draft.getWallz = !draft.getWallz;
         break;
 
       default:
@@ -72,6 +75,7 @@ export default function App() {
     sorting: 'date_added',
     page: 1,
     wallzData: [],
+    getWallz: 0,
   };
 
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
@@ -82,7 +86,7 @@ export default function App() {
     loading,
     error,
     data,
-  } = useGetWallz(state.search_q, state.categories, state.colors, state.sorting, state.page);
+  } = useGetWallz(state.search_q, state.categories, state.colors, state.sorting, state.page, state.getWallz);
 
   useEffect(() => {
     dispatch({ type: 'wallzData', payload: data });

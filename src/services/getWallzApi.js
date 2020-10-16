@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function useGetWallz(q, categories, colors, sorting, page) {
+export default function useGetWallz(q, categories, colors, sorting, page, getWallz) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [data, setData] = useState([]);
@@ -10,7 +10,7 @@ export default function useGetWallz(q, categories, colors, sorting, page) {
   useEffect(() => {
     setData([]);
     setHasMore(true);
-  }, [q, categories, colors, sorting]);
+  }, [getWallz]);
 
   useEffect(() => {
     if (!hasMore) {
@@ -41,7 +41,7 @@ export default function useGetWallz(q, categories, colors, sorting, page) {
       setLoading(false);
     });
     return () => cancel();
-  }, [q, categories, colors, sorting, page, hasMore]);
+  }, [page, getWallz, hasMore]);
 
   return {
     loading, error, hasMore, data,

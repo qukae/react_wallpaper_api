@@ -1,15 +1,22 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useContext } from 'react';
+import DispatchContext from '../../app/DispatchContext';
+import StateContext from '../../app/StateContext';
 import '../MainFilter.css';
 
-const Categories = ({ categories, onCategoriesClick }) => {
+const Categories = () => {
   const clazz = 'filter-btn-active';
+  const appDispatch = useContext(DispatchContext);
+  const appState = useContext(StateContext);
 
+  const onCategoriesClick = (indx) => {
+    appDispatch({ type: 'categories', payload: indx });
+  };
   return (
     <div>
       <button
         type="button"
-        className={`filter-btn ${categories[0] ? clazz : null}`}
+        className={`filter-btn ${appState.categories[0] ? clazz : null}`}
         onClick={() => onCategoriesClick(0)}
       >
         General
@@ -17,7 +24,7 @@ const Categories = ({ categories, onCategoriesClick }) => {
 
       <button
         type="button"
-        className={`filter-btn ${categories[1] ? clazz : null}`}
+        className={`filter-btn ${appState.categories[1] ? clazz : null}`}
         onClick={() => onCategoriesClick(1)}
       >
         Anime
@@ -25,7 +32,7 @@ const Categories = ({ categories, onCategoriesClick }) => {
 
       <button
         type="button"
-        className={`filter-btn ${categories[2] ? clazz : null}`}
+        className={`filter-btn ${appState.categories[2] ? clazz : null}`}
         onClick={() => onCategoriesClick(2)}
       >
         People

@@ -1,10 +1,14 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useRef, useEffect, useState } from 'react';
+import React, {
+  useRef, useEffect, useState, useContext,
+} from 'react';
+import DispatchContext from '../../app/DispatchContext';
+import StateContext from '../../app/StateContext';
 import '../MainFilter.css';
 import './Colors.css';
 
-const Colors = ({ onColorClick }) => {
+const Colors = () => {
   const colors = [
     '660000', '990000', 'cc0000', 'cc3333', 'ea4c88', '993399', '663399', '333399', '0066cc',
     '0099cc', '66cccc', '77cc33', '669900', '336600', '666600', '999900', 'cccc33', 'ffff00',
@@ -12,10 +16,12 @@ const Colors = ({ onColorClick }) => {
     'ffffff', '424153', 'reset',
   ];
 
+  const appDispatch = useContext(DispatchContext);
+  const appState = useContext(StateContext);
+
   // click outside hook
   const node = useRef();
   const [open, setOpen] = useState(false);
-  const [btnColor, setBtnColor] = useState('313131');
   const handleClickOutside = (e) => {
     if (node.current.contains(e.target)) {
       // inside click
@@ -26,8 +32,7 @@ const Colors = ({ onColorClick }) => {
   };
 
   const handleChange = (color) => {
-    onColorClick(color);
-    setBtnColor(color || '313131');
+    appDispatch({ type: 'colors', payload: color });
     setOpen(false);
   };
 
@@ -64,7 +69,12 @@ const Colors = ({ onColorClick }) => {
 
   return (
     <div ref={node} className="colors-div">
-      <button type="button" className={`filter-btn ${open ? clazz : null}`} onClick={() => setOpen(!open)} style={{ backgroundColor: `#${btnColor}` }}>
+      <button
+        type="button"
+        className={`filter-btn ${open ? clazz : null}`}
+        onClick={() => setOpen(!open)}
+        style={{ backgroundColor: `#${appState.colors || '313131'}` }}
+      >
         Color
       </button>
 

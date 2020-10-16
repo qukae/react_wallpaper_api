@@ -10,11 +10,13 @@ function Aside({wallData, onHideClick, asideHidden, ...props}) {
   const onColorClick = (clr) => {
     const color = clr.slice(1);
     appDispatch({type: 'colors', payload: color})
+    appDispatch({type: 'getWallz'})
     props.history.push('/');
   }
 
   const onTagClick = (tag) => {
     appDispatch({type: 'search_q', payload: tag})
+    appDispatch({type: 'getWallz'})
     props.history.push('/');
   }
 

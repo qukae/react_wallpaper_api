@@ -10,11 +10,6 @@ const MainFilter = (props) => {
   const appDispatch = useContext(DispatchContext);
 
   const [categories, setCategories] = useState([1, 1, 0]);
-  const [color, setColor] = useState('');
-
-  const onColorClick = (clr) => {
-    setColor(clr);
-  };
 
   const onCategoriesClick = (indx) => {
     setCategories((prevState) => {
@@ -25,8 +20,7 @@ const MainFilter = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    appDispatch({ type: 'categories', payload: categories });
-    appDispatch({ type: 'colors', payload: color });
+    appDispatch({ type: 'getWallz' });
     props.history.push('/');
   };
 
@@ -34,7 +28,7 @@ const MainFilter = (props) => {
     <>
       <form onSubmit={onSubmit} className="main-filter">
         <Categories onCategoriesClick={(indx) => onCategoriesClick(indx)} categories={categories} />
-        <Colors onColorClick={(clr) => onColorClick(clr)} />
+        <Colors />
         <button type="submit" className="filter-btn">Submit</button>
       </form>
     </>

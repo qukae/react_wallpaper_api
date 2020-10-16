@@ -3,31 +3,35 @@ import './Search.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import DispatchContext from '../app/DispatchContext';
+import StateContext from '../app/StateContext';
 
 const Search = (props) => {
   const appDispatch = useContext(DispatchContext);
-  const [search_q, setSearch_q] = useState('');
+  const appState = useContext(StateContext);
 
+  const onChange = (search_q) => {
+    appDispatch({ type: 'search_q', payload: search_q });
+  };
   const onSubmit = (e) => {
     e.preventDefault();
-    appDispatch({ type: 'search_q', payload: search_q });
     props.history.push('/');
+    appDispatch({ type: 'getWallz' });
   };
 
   const clear = () => {
-    setSearch_q('');
     appDispatch({ type: 'search_q', payload: '' });
+    appDispatch({ type: 'getWallz' });
     props.history.push('/');
   };
 
   return (
     <form onSubmit={onSubmit} className="search">
       <input
-        value={search_q}
-        onChange={(e) => setSearch_q(e.target.value)}
+        value={appState.search_q}
+        onChange={(e) => onChange(e.target.value)}
         className="search-input"
         type="text"
         placeholder="Search..."
