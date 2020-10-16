@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import './Wpage.css';
 import { withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import useGetOneWall from '../../services/getOneWallApi';
 import Aside from './aside/Aside';
 
@@ -76,7 +78,7 @@ function Wpage({ match }) {
   };
   return (
     <div className="wpage-container">
-      <div className={`showcase ${asideHidden ? 'showcase-full' : null}`}>
+      <div className={`showcase ${asideHidden ? 'showcase-full' : ''}`}>
         {wallData ? (
           <Aside
             wallData={wallData}
@@ -86,6 +88,13 @@ function Wpage({ match }) {
         ) : null}
         <div className="img-div">
           {Img()}
+          <button
+            type="button"
+            className="btn-hide"
+            onClick={onHideClick}
+          >
+            <FontAwesomeIcon className={asideHidden ? 'btn-hide-ico-right' : 'btn-hide-ico-left'} icon={faChevronLeft} />
+          </button>
         </div>
         {Error()}
         {Loader()}

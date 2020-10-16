@@ -61,14 +61,9 @@ function Aside({wallData, onHideClick, asideHidden, ...props}) {
   };
 
   return (
-    <aside className={`aside-wpage ${asideHidden ? 'aside-wpage-hidden' : null}`}>
+    <aside className={`aside-wpage ${asideHidden ? 'aside-wpage-hidden' : ''}`}>
       <div className="aside-div">
-        <button
-          className="btn-nav btn-nav-li btn-hide"
-          onClick={onHideClick}
-        >
-          hide
-        </button>
+
         <h5 className="resolution">{wallData.resolution}</h5>
           <div className="colors-container">
           {colors(wallData.colors)}
