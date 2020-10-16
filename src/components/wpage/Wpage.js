@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import './Wpage.css';
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import useGetOneWall from '../../services/getOneWallApi';
 import Aside from './aside/Aside';
 

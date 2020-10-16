@@ -27,7 +27,7 @@ export default function App() {
         break;
 
       case 'categories':
-        if (draft.categories === action.payload) {
+        if (draft.categories.join('') === action.payload.join('')) {
           return;
         }
         draft.wallzData = [];
@@ -36,7 +36,7 @@ export default function App() {
         break;
 
       case 'colors':
-        if (draft.colors === action.colors) {
+        if (draft.colors === action.payload) {
           return;
         }
         draft.wallzData = [];
@@ -45,7 +45,7 @@ export default function App() {
         break;
 
       case 'sorting':
-        if (draft.sorting === action.sorting) {
+        if (draft.sorting === action.payload) {
           return;
         }
         draft.wallzData = [];
@@ -67,14 +67,15 @@ export default function App() {
   }
   const initialState = {
     search_q: '',
-    categories: [1, 0, 0],
-    colors: null,
+    categories: [1, 1, 0],
+    colors: '',
     sorting: 'date_added',
     page: 1,
     wallzData: [],
   };
 
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
+
   // Custom hook useGetWallz gets wallpapers data as 'data' from server using axios
   const {
     hasMore,

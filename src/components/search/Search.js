@@ -13,16 +13,11 @@ const Search = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (search_q) {
-      appDispatch({ type: 'search_q', payload: search_q });
-    }
+    appDispatch({ type: 'search_q', payload: search_q });
     props.history.push('/');
   };
 
   const clear = () => {
-    if (search_q === '') {
-      return;
-    }
     setSearch_q('');
     appDispatch({ type: 'search_q', payload: '' });
     props.history.push('/');

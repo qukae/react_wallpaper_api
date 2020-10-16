@@ -9,8 +9,8 @@ import './MainFilter.css';
 const MainFilter = (props) => {
   const appDispatch = useContext(DispatchContext);
 
-  const [categories, setCategories] = useState([1, 0, 0]);
-  const [color, setColor] = useState(null);
+  const [categories, setCategories] = useState([1, 1, 0]);
+  const [color, setColor] = useState('');
 
   const onColorClick = (clr) => {
     setColor(clr);
