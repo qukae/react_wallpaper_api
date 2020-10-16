@@ -3,6 +3,8 @@ import './Gallery.css';
 import { Link } from 'react-router-dom';
 import StateContext from '../app/StateContext';
 import DispatchContext from '../app/DispatchContext';
+import Loader from '../utils/Loader';
+import Error from '../utils/Error';
 
 export default function Gallery({ loading, error, hasMore }) {
   const { wallzData } = useContext(StateContext);
@@ -10,6 +12,7 @@ export default function Gallery({ loading, error, hasMore }) {
 
   const observer = useRef();
 
+  // infinite scroll
   const lastWallzRef = useCallback((node) => {
     if (loading) return;
     if (!hasMore) return;
@@ -41,43 +44,12 @@ export default function Gallery({ loading, error, hasMore }) {
     );
   });
 
-  const Loader = () => {
-    if (loading) {
-      return (
-        <div className="loader">
-          <div className="lds-roller">
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-          </div>
-        </div>
-      );
-    }
-    return null;
-  };
-
-  const Error = () => {
-    if (error) {
-      return (
-        <div className="Error">
-          <p>Error</p>
-        </div>
-      );
-    }
-    return null;
-  };
-
   return (
     <>
       <div className="gallery">
         {CreateEl()}
-        {Loader()}
-        {Error()}
+        {loading ? Loader() : null}
+        {error ? Error() : null}
       </div>
     </>
   );

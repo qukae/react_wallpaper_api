@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import useGetOneWall from '../../services/getOneWallApi';
 import Aside from './aside/Aside';
+import Loader from '../utils/Loader';
+import Error from '../utils/Error';
 
 function Wpage({ match }) {
   const [zoomClass, setZoomClass] = useState('showcase-img-sm');
@@ -47,35 +49,7 @@ function Wpage({ match }) {
     }
     return null;
   };
-  const Loader = () => {
-    if (loading) {
-      return (
-        <div className="loader">
-          <div className="lds-roller">
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-          </div>
-        </div>
-      );
-    }
-    return null;
-  };
-  const Error = () => {
-    if (error) {
-      return (
-        <div className="Error">
-          <p>Error</p>
-        </div>
-      );
-    }
-    return null;
-  };
+
   return (
     <div className="wpage-container">
       <div className={`showcase ${asideHidden ? 'showcase-full' : ''}`}>
@@ -96,8 +70,8 @@ function Wpage({ match }) {
             <FontAwesomeIcon className={asideHidden ? 'btn-hide-ico-right' : 'btn-hide-ico-left'} icon={faChevronLeft} />
           </button>
         </div>
-        {Error()}
-        {Loader()}
+        {error ? Error() : null}
+        {loading ? Loader() : null}
       </div>
     </div>
   );

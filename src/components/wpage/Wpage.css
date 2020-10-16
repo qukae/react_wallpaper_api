@@ -15,13 +15,11 @@
 .img-div {
   display: flex;
   position: relative;
+  min-height: 100%;
 }
 .showcase-img {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  margin: auto;
   padding-top: 100px;
   align-items: center;
   justify-content: center;
@@ -33,22 +31,30 @@
   100% {  opacity: 1; }
 }
 .showcase-img-sm {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   cursor: zoom-in;
   margin: auto;
   max-width: 95%;
   max-height: 95%;
 }
 .showcase-img-md {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   cursor: zoom-in;
   max-width: none;
   max-height: 100%;
-  margin: auto;
 }
 .showcase-img-lg {
+  top: 0;
+  left: 0;
   cursor: zoom-out;
   max-width: none;
   max-height: none;
-  margin: auto;
 }
 .btn-hide {
   position: absolute;
