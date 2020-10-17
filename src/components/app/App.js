@@ -69,6 +69,7 @@ export default function App() {
         draft.categories = [1, 1, 0];
         draft.colors = '';
         draft.resolutions = '';
+        draft.atleast = '';
         break;
 
       case 'wallzData':
