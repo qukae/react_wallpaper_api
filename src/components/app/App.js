@@ -39,6 +39,20 @@ export default function App() {
         draft.colors = action.payload;
         break;
 
+      case 'resolutions':
+        if (draft.resolutions === action.payload) {
+          return;
+        }
+        draft.resolutions = action.payload;
+        break;
+
+      case 'atleast':
+        if (draft.atleast === action.payload) {
+          return;
+        }
+        draft.atleast = action.payload;
+        break;
+
       case 'sorting':
         if (draft.sorting === action.payload) {
           return;
@@ -48,6 +62,13 @@ export default function App() {
 
       case 'page':
         draft.page += action.payload;
+        break;
+
+      case 'showLists':
+        draft.search_q = '';
+        draft.categories = [1, 1, 0];
+        draft.colors = '';
+        draft.resolutions = '';
         break;
 
       case 'wallzData':
@@ -72,6 +93,8 @@ export default function App() {
     search_q: '',
     categories: [1, 1, 0],
     colors: '',
+    resolutions: '',
+    atleast: '',
     sorting: 'date_added',
     page: 1,
     wallzData: [],
@@ -86,7 +109,7 @@ export default function App() {
     loading,
     error,
     data,
-  } = useGetWallz(state.search_q, state.categories, state.colors, state.sorting, state.page, state.getWallz);
+  } = useGetWallz(state.search_q, state.categories, state.colors, state.resolutions, state.atleast, state.sorting, state.page, state.getWallz);
 
   useEffect(() => {
     dispatch({ type: 'wallzData', payload: data });

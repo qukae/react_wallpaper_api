@@ -19,9 +19,9 @@ const Colors = () => {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
-  // click outside hook
   const node = useRef();
   const [open, setOpen] = useState(false);
+
   const handleClickOutside = (e) => {
     if (node.current.contains(e.target)) {
       // inside click
@@ -30,12 +30,6 @@ const Colors = () => {
     // outside click
     setOpen(false);
   };
-
-  const handleChange = (color) => {
-    appDispatch({ type: 'colors', payload: color });
-    setOpen(false);
-  };
-
   useEffect(() => {
     if (open) {
       document.addEventListener('mousedown', handleClickOutside);
@@ -48,7 +42,10 @@ const Colors = () => {
     };
   }, [open]);
 
-  //  click outside end
+  const handleChange = (color) => {
+    appDispatch({ type: 'colors', payload: color });
+    setOpen(false);
+  };
 
   const createColorsEl = () => {
     const el = colors.map((color) => {
@@ -76,6 +73,7 @@ const Colors = () => {
         style={{ backgroundColor: `#${appState.colors || '313131'}` }}
       >
         Color
+        {open ? String.fromCharCode(9652) : String.fromCharCode(9662)}
       </button>
 
       {

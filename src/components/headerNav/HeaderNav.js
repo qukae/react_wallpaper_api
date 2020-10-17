@@ -8,6 +8,7 @@ const HeaderNav = () => {
 
   const onNavClick = (sorting) => {
     appDispatch({ type: 'sorting', payload: sorting });
+    appDispatch({ type: 'showLists' });
     appDispatch({ type: 'getWallz' });
   };
 
