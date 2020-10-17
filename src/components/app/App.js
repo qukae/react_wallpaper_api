@@ -60,6 +60,10 @@ export default function App() {
         draft.ratios = action.payload;
         break;
 
+      case 'order':
+        draft.order = action.payload;
+        break;
+
       case 'sorting':
         if (draft.sorting === action.payload) {
           return;
@@ -77,6 +81,8 @@ export default function App() {
         draft.colors = '';
         draft.resolutions = '';
         draft.atleast = '';
+        draft.ratios = '';
+        draft.order = 'desc';
         break;
 
       case 'wallzData':
@@ -104,6 +110,7 @@ export default function App() {
     resolutions: '',
     atleast: '',
     ratios: '',
+    order: 'desc',
     sorting: 'date_added',
     page: 1,
     wallzData: [],
@@ -113,16 +120,16 @@ export default function App() {
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
 
   // Custom hook useGetWallz gets wallpapers data as 'data' from server using axios
-  // const {
-  //   hasMore,
-  //   loading,
-  //   error,
-  //   data,
-  // } = useGetWallz(state.search_q, state.categories, state.colors, state.resolutions, state.atleast, state.ratios, state.sorting, state.page, state.getWallz);
+  const {
+    hasMore,
+    loading,
+    error,
+    data,
+  } = useGetWallz(state.search_q, state.categories, state.colors, state.resolutions, state.atleast, state.ratios, state.order, state.sorting, state.page, state.getWallz);
 
-  // useEffect(() => {
-  //   dispatch({ type: 'wallzData', payload: data });
-  // }, [data]);
+  useEffect(() => {
+    dispatch({ type: 'wallzData', payload: data });
+  }, [data]); // eslint-disable-line
 
   return (
     <StateContext.Provider value={state}>
@@ -143,13 +150,13 @@ export default function App() {
               <Wpage />
             )}
           />
-          {/* <Route
+          <Route
             path="/"
             exact
             render={() => (
               <Gallery loading={loading} error={error} hasMore={hasMore} />
             )}
-          /> */}
+          />
 
         </Router>
       </DispatchContext.Provider>

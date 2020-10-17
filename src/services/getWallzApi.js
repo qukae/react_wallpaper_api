@@ -1,7 +1,9 @@
+/* eslint-disable consistent-return */
+/* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function useGetWallz(q, categories, colors, resolutions, atleast, ratios, sorting, page, getWallz) {
+export default function useGetWallz(q, categories, colors, resolutions, atleast, ratios, order, sorting, page, getWallz) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [data, setData] = useState([]);
@@ -24,7 +26,7 @@ export default function useGetWallz(q, categories, colors, resolutions, atleast,
       method: 'GET',
       url: 'https://cors-anywhere.herokuapp.com/https://wallhaven.cc/api/v1/search',
       params: {
-        q, categories, colors, resolutions, atleast, ratios, sorting, page,
+        q, categories, colors, resolutions, atleast, ratios, order, sorting, page,
       },
       cancelToken: new axios.CancelToken((c) => { cancel = c; return c; }),
     }).then((res) => {
@@ -41,7 +43,7 @@ export default function useGetWallz(q, categories, colors, resolutions, atleast,
       setLoading(false);
     });
     return () => cancel();
-  }, [page, getWallz, hasMore]);
+  }, [page, getWallz, hasMore]); // eslint-disable-line
 
   return {
     loading, error, hasMore, data,

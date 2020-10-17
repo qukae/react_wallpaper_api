@@ -1,5 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRedoAlt } from '@fortawesome/free-solid-svg-icons';
 import DispatchContext from '../app/DispatchContext';
 
 import Categories from './categories/Categories';
@@ -7,6 +9,7 @@ import Colors from './colors/Colors';
 import Resolutions from './resolutions/Resolutions';
 import './MainFilter.css';
 import Ratios from './ratios/Ratios';
+import Order from './order/Order';
 
 const MainFilter = (props) => {
   const appDispatch = useContext(DispatchContext);
@@ -24,7 +27,11 @@ const MainFilter = (props) => {
         <Colors />
         <Resolutions />
         <Ratios />
-        <button type="submit" className="filter-btn">Submit</button>
+        <Order />
+        <button type="submit" className="filter-btn">
+          <FontAwesomeIcon className="filter-icon" icon={faRedoAlt} />
+          Submit
+        </button>
       </form>
     </>
   );

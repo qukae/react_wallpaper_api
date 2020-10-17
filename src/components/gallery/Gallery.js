@@ -23,7 +23,7 @@ export default function Gallery({ loading, error, hasMore }) {
       }
     });
     if (node) observer.current.observe(node);
-  }, [loading, hasMore]);
+  }, [loading, hasMore]); // eslint-disable-line
 
   const CreateEl = () => wallzData.map((item, index) => {
     if (wallzData.length === index + 1) {

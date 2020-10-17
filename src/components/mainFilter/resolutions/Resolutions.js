@@ -62,7 +62,7 @@ const Resolutions = () => {
   useEffect(() => {
     appDispatch({ type: 'resolutions', payload: '' });
     appDispatch({ type: 'atleast', payload: '' });
-  }, [atleast]);
+  }, [atleast]); // eslint-disable-line
 
   const createResolutionsEl = (resArray) => {
     const el = resArray.map((res) => (
