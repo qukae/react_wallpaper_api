@@ -6,6 +6,7 @@ import Categories from './categories/Categories';
 import Colors from './colors/Colors';
 import Resolutions from './resolutions/Resolutions';
 import './MainFilter.css';
+import Ratios from './ratios/Ratios';
 
 const MainFilter = (props) => {
   const appDispatch = useContext(DispatchContext);
@@ -22,6 +23,7 @@ const MainFilter = (props) => {
         <Categories />
         <Colors />
         <Resolutions />
+        <Ratios />
         <button type="submit" className="filter-btn">Submit</button>
       </form>
     </>

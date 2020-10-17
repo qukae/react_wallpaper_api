@@ -53,6 +53,13 @@ export default function App() {
         draft.atleast = action.payload;
         break;
 
+      case 'ratios':
+        if (draft.ratios === action.payload) {
+          return;
+        }
+        draft.ratios = action.payload;
+        break;
+
       case 'sorting':
         if (draft.sorting === action.payload) {
           return;
@@ -96,6 +103,7 @@ export default function App() {
     colors: '',
     resolutions: '',
     atleast: '',
+    ratios: '',
     sorting: 'date_added',
     page: 1,
     wallzData: [],
@@ -105,16 +113,16 @@ export default function App() {
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
 
   // Custom hook useGetWallz gets wallpapers data as 'data' from server using axios
-  const {
-    hasMore,
-    loading,
-    error,
-    data,
-  } = useGetWallz(state.search_q, state.categories, state.colors, state.resolutions, state.atleast, state.sorting, state.page, state.getWallz);
+  // const {
+  //   hasMore,
+  //   loading,
+  //   error,
+  //   data,
+  // } = useGetWallz(state.search_q, state.categories, state.colors, state.resolutions, state.atleast, state.ratios, state.sorting, state.page, state.getWallz);
 
-  useEffect(() => {
-    dispatch({ type: 'wallzData', payload: data });
-  }, [data]);
+  // useEffect(() => {
+  //   dispatch({ type: 'wallzData', payload: data });
+  // }, [data]);
 
   return (
     <StateContext.Provider value={state}>
@@ -135,13 +143,13 @@ export default function App() {
               <Wpage />
             )}
           />
-          <Route
+          {/* <Route
             path="/"
             exact
             render={() => (
               <Gallery loading={loading} error={error} hasMore={hasMore} />
             )}
-          />
+          /> */}
 
         </Router>
       </DispatchContext.Provider>
