@@ -7,7 +7,6 @@
   width: 100%;
   z-index: 101;
 }
-
 .filter-btn {
   color: rgb(138, 138, 138);
   background-color: #313131;
@@ -16,14 +15,20 @@
   border-radius: 2px;
   margin: 0.1rem;
 }
-
 .filter-btn-active {
   color: rgb(239, 247, 255);
   background-color: #6b6b6b;
 }
-
-
-
+.submit-btn {
+  margin-left: 10px;
+  background: #283d28;
+  transition: transform .1s;
+}
 .filter-btn:focus {
   outline: none;
+}
+.submit-btn:hover {
+  transform: scale(1.05);
+  color: #DDD;
+  background-color: #2f472f;
 }

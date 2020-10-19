@@ -1,0 +1,57 @@
+.res-menu {
+  display: grid;
+  grid-template-columns: repeat(5, 90px [col-start]);
+  position: absolute;
+  padding: 0.5rem;
+  top: 30px;
+  margin: 0.1rem;
+  right: 0-px;
+  color: rgb(138, 138, 138);
+  background-color: rgba(0, 0, 0, 0.699);
+  box-shadow: 11px 14px 26px -6px rgba(0,0,0,0.59);
+}
+
+.res-div {
+  position: relative;
+}
+
+.res-title {
+  color: #DDD;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 0.2rem;
+}
+.res-btn{
+  margin: 0.2rem;
+  height: 1.5rem;
+  width: 5.3rem;
+  border: none;
+  border-radius: 2px;
+  color: #DDD;
+  background: #222;
+  box-shadow: inset 0 0 0.75em rgba(255,255,255,.03), 0 2px 0 #222, 0 3px 4px -3px #000, 0 1px 2px rgba(0,0,0,.2);
+}
+.res-btn:hover {
+  color: #fff;
+  background: #444;
+}
+.res-btn:focus {
+  outline: none;
+}
+.res-atleast {
+  grid-column: 1 / 3;
+  width: 11rem;
+  margin-bottom: 1rem;
+}
+.res-exact {
+  grid-column: 3 / 5;
+  width: 11rem;
+  margin-bottom: 1rem;
+}
+.res-clear {
+  margin-bottom: 1rem;
+}
+.res-btn-active {
+  color: #fff;
+  background: #444;
+}

@@ -1,0 +1,25 @@
+.order {
+  position: relative;
+}
+.order:after {
+  position: absolute;
+  top: 40px;
+  left: -65px;
+  content: 'descending/ascending';
+  background-color: rgba(0, 0, 0, 0.479);
+  padding: 0 10px 5px 10px;
+  border-radius: 5px;
+  color: #DDDDDD;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .2s 2s ease;
+}
+.order:hover::after {
+  transform: scaleY(1);
+}
+.order-desc {
+  transform: rotate(-90deg);
+}
+.order-asc {
+  transform: rotate(90deg);
+}

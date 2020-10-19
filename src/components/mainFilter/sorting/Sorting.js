@@ -5,16 +5,10 @@ import React, {
 } from 'react';
 import DispatchContext from '../../app/DispatchContext';
 import StateContext from '../../app/StateContext';
-import '../MainFilter.css';
-import './Colors.css';
+import './Sorting.css';
 
-const Colors = () => {
-  const colors = [
-    '660000', '990000', 'cc0000', 'cc3333', 'ea4c88', '993399', '663399', '333399', '0066cc',
-    '0099cc', '66cccc', '77cc33', '669900', '336600', '666600', '999900', 'cccc33', 'ffff00',
-    'ffcc33', 'ff9900', 'ff6600', 'cc6633', '996633', '663300', '000000', '999999', 'cccccc',
-    'ffffff', '424153', 'reset',
-  ];
+const Sorting = () => {
+  const sorting = ['random', 'relevance', 'date_added', 'views', 'favorites', 'toplist'];
 
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
@@ -42,45 +36,42 @@ const Colors = () => {
     };
   }, [open]);
 
-  const handleChange = (color) => {
-    appDispatch({ type: 'colors', payload: color });
+  const handleChange = (sort) => {
+    appDispatch({ type: 'sorting', payload: sort });
     setOpen(false);
   };
 
-  const createColorsEl = () => {
-    const el = colors.map((color) => {
-      if (color === 'reset') {
-        return (
-          <button onClick={() => handleChange(null)} type="button" className="colors-btn" key="reset" style={{ backgroundColor: 'white' }}>clear</button>
-        );
-      }
-      const colorHex = `#${color}`;
-      return (
-        <button onClick={() => handleChange(color)} type="button" className="colors-btn" key={colorHex} style={{ backgroundColor: colorHex }} />
-      );
-    });
+  const createSortingEl = (sortingArray) => {
+    const el = sortingArray.map((sort) => (
+      <button onClick={() => handleChange(sort)} type="button" className="res-btn" key={sort}>
+        {
+           sort.charAt(0).toUpperCase() + sort.slice(1)
+        }
+      </button>
+    ));
     return el;
   };
 
   const clazz = 'filter-btn-active';
 
   return (
-    <div ref={node} className="colors-div">
+    <div ref={node} className="sort-div">
       <button
         type="button"
-        className={`filter-btn ${open ? clazz : null}`}
+        className={`filter-btn ${open ? clazz : ''}`}
         onClick={() => setOpen(!open)}
-        style={{ backgroundColor: `#${appState.colors || '313131'}` }}
       >
-        Color
+        {appState.sorting.charAt(0).toUpperCase() + appState.sorting.slice(1) || 'Date Added'}
         {open ? String.fromCharCode(9652) : String.fromCharCode(9662)}
       </button>
 
       {
         open
           ? (
-            <div className="colors-menu">
-              {createColorsEl()}
+            <div className="sort-menu">
+              <div className="res-col">
+                {createSortingEl(sorting)}
+              </div>
             </div>
           )
           : (
@@ -91,4 +82,4 @@ const Colors = () => {
   );
 };
 
-export default Colors;
+export default Sorting;

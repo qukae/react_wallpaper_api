@@ -5,14 +5,16 @@
   padding: 0.5rem;
   top: 30px;
   margin: 0.1rem;
-  right: 0-;
+  right: 0-px;
   color: rgb(138, 138, 138);
-  background-color: #6b6b6b;
+  background-color: rgba(0, 0, 0, 0.568);
   box-shadow: 11px 14px 26px -6px rgba(0,0,0,0.59);
 }
 
 .colors-div {
   position: relative;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .colors-btn{
