@@ -19,10 +19,16 @@
   color: rgb(239, 247, 255);
   background-color: #6b6b6b;
 }
-
+.submit-btn {
+  margin-left: 10px;
+  background: #283d28;
+  transition: transform .1s;
+}
 .filter-btn:focus {
   outline: none;
 }
-.filter-icon {
-  margin-right: 10px;
+.submit-btn:hover {
+  transform: scale(1.05);
+  color: #DDD;
+  background-color: #2f472f;
 }

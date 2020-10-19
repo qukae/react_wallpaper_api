@@ -10,6 +10,7 @@ import Resolutions from './resolutions/Resolutions';
 import './MainFilter.css';
 import Ratios from './ratios/Ratios';
 import Order from './order/Order';
+import Sorting from './sorting/Sorting';
 
 const MainFilter = (props) => {
   const appDispatch = useContext(DispatchContext);
@@ -27,10 +28,11 @@ const MainFilter = (props) => {
         <Colors />
         <Resolutions />
         <Ratios />
+        <Sorting />
         <Order />
-        <button type="submit" className="filter-btn">
+        <button type="submit" className="filter-btn submit-btn">
           <FontAwesomeIcon className="filter-icon" icon={faRedoAlt} />
-          Submit
+
         </button>
       </form>
     </>

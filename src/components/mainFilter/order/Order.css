@@ -10,11 +10,12 @@
   padding: 0 10px 5px 10px;
   border-radius: 5px;
   color: #DDDDDD;
-  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .2s 2s ease;
 }
 .order:hover::after {
-  transition-delay: 1.5s;
-  opacity: 1;
+  transform: scaleY(1);
 }
 .order-desc {
   transform: rotate(-90deg);
