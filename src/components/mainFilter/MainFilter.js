@@ -32,7 +32,6 @@ const MainFilter = (props) => {
         <Order />
         <button type="submit" className="filter-btn submit-btn">
           <FontAwesomeIcon className="filter-icon" icon={faRedoAlt} />
-
         </button>
       </form>
     </>

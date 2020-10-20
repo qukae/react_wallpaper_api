@@ -1,4 +1,5 @@
 .logo{
+  width: 250px;
   margin: 0 1rem;
   text-decoration: none;
   color: #DDDDDD;
@@ -7,7 +8,7 @@
 /* Glitch text */
 .glitch {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   position: relative;
   text-shadow:
@@ -100,5 +101,13 @@
     scroll-behavior: auto !important;
     transition-duration: 0s !important;
     transition-delay: 0s !important;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .logo-wrap {
+    grid-column: 1;
+    grid-row: 1 / 1;
+    align-self: center;
   }
 }

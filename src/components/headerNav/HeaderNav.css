@@ -1,8 +1,9 @@
 .header-nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   list-style: none;
   margin-bottom: 0;
+  min-width: 344px;
 }
 .btn-nav-li{
   padding: 0.3rem ;
@@ -19,4 +20,10 @@
 }
 .btn-nav:hover{
   color:  #5e7f9e;
+}
+
+@media screen and (max-width: 968px) {
+  .header-nav {
+    justify-content: center;
+  }
 }

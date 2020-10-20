@@ -1,6 +1,4 @@
 .sort-menu {
-  /* display: grid; */
-  /* grid-template-columns: 1fr; */
   position: absolute;
   padding: 0.5rem;
   top: 30px;
@@ -10,7 +8,6 @@
   background-color: rgba(0, 0, 0, 0.699);
   box-shadow: 11px 14px 26px -6px rgba(0,0,0,0.59);
 }
-
  .sort-div {
   position: relative;
   margin-left: 10px;

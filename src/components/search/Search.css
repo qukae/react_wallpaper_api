@@ -3,7 +3,7 @@
   padding: 0.3rem ;
   margin: 0.5rem 0.1rem;
   width: 30%;
-
+  min-width: 300px;
 }
 input[type="text"] {
   text-shadow: 1px 1px 3px rgba(0,0,0,.75);
@@ -40,4 +40,20 @@ input[type="text"]:focus {
 }
 .ico{
   color: rgb(165, 165, 165);
+}
+
+@media screen and (max-width: 968px) {
+  .search {
+    width: 90%;
+    align-self: center;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 700px) {
+  .search {
+    grid-column: 1 / -1;
+    width: 100%;
+    align-self: center;
+    margin: 0 auto;
+  }
 }

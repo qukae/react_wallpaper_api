@@ -9,7 +9,7 @@ import './Logo.css';
 const Logo = () => {
   const appDispatch = useContext(DispatchContext);
   return (
-    <Link to="/">
+    <Link to="/" className="logo-wrap">
       <div
         className="logo"
         onClick={() => {

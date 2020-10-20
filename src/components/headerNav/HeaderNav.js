@@ -13,7 +13,7 @@ const HeaderNav = () => {
   };
 
   return (
-    <nav>
+    <nav className="header-nav-wrap">
       <ul className="header-nav">
         <Link to="/">
           <li className="btn-nav-li">

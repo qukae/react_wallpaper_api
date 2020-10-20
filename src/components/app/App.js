@@ -120,16 +120,16 @@ export default function App() {
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
 
   // Custom hook useGetWallz gets wallpapers data as 'data' from server using axios
-  const {
-    hasMore,
-    loading,
-    error,
-    data,
-  } = useGetWallz(state.search_q, state.categories, state.colors, state.resolutions, state.atleast, state.ratios, state.order, state.sorting, state.page, state.getWallz);
+  // const {
+  //   hasMore,
+  //   loading,
+  //   error,
+  //   data,
+  // } = useGetWallz(state.search_q, state.categories, state.colors, state.resolutions, state.atleast, state.ratios, state.order, state.sorting, state.page, state.getWallz);
 
-  useEffect(() => {
-    dispatch({ type: 'wallzData', payload: data });
-  }, [data]); // eslint-disable-line
+  // useEffect(() => {
+  //   dispatch({ type: 'wallzData', payload: data });
+  // }, [data]); // eslint-disable-line
 
   return (
     <StateContext.Provider value={state}>
@@ -140,7 +140,7 @@ export default function App() {
             render={() => (
               <>
                 <MainHeader />
-                <MainFilter />
+                {/* <MainFilter /> */}
               </>
             )}
           />
@@ -150,13 +150,13 @@ export default function App() {
               <Wpage />
             )}
           />
-          <Route
+          {/* <Route
             path="/"
             exact
             render={() => (
               <Gallery loading={loading} error={error} hasMore={hasMore} />
             )}
-          />
+          /> */}
 
         </Router>
       </DispatchContext.Provider>
