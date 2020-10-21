@@ -1,6 +1,7 @@
 .res-menu {
   display: grid;
   grid-template-columns: repeat(5, 90px [col-start]);
+  column-gap: .8rem;
   position: absolute;
   padding: 0.5rem;
   top: 30px;
@@ -54,4 +55,29 @@
 .res-btn-active {
   color: #fff;
   background: #444;
+}
+
+@media screen and (max-width: 660px) {
+  .res-menu {
+    grid-template-columns: 160px 160px ;
+    grid-template-rows: 40px .7fr 1fr 1fr;
+    column-gap: .3rem;
+    padding: 0.2rem;
+    right: -120px;
+    background-color: #000;
+    z-index: 3;
+  }
+  .res-atleast {
+    grid-column: 1 / 2;
+    width: 11rem;
+    margin-bottom: 1rem;
+  }
+  .res-exact {
+    grid-column: 2 / 3;
+    width: 11rem;
+    margin-bottom: 1rem;
+  }
+  .res-col {
+    text-align: center;
+  }
 }

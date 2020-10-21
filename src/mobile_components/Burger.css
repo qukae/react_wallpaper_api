@@ -1,0 +1,30 @@
+.burger-menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 50px;
+  grid-template-rows:  150px 1fr 1fr;
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100vh;
+  background: #000;
+  z-index: 2;
+}
+.burger-btn {
+  position: absolute;
+  margin-right: 30px;
+  margin-top: 20px;
+  top: 0;
+  right: 0;
+  border: none;
+  background: none;
+  z-index: 3;
+}
+.burger-btn:active{
+  outline: none;
+}
+
+.ico-burger {
+  z-index: 3;
+  transform: scale(2);
+}

@@ -7,10 +7,15 @@
   color: rgb(138, 138, 138);
   background-color: rgba(0, 0, 0, 0.699);
   box-shadow: 11px 14px 26px -6px rgba(0,0,0,0.59);
+  z-index: 3;
 }
  .sort-div {
   position: relative;
   margin-left: 10px;
 }
 
-
+@media screen and (max-width: 660px) {
+  .sort-menu {
+    background-color: #000;
+  }
+}

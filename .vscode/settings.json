@@ -11,6 +11,7 @@
     "fortawesome",
     "immer",
     "mathc",
+    "minmax",
     "noninteractive",
     "toplist",
     "uploader"

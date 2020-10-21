@@ -26,4 +26,21 @@
   .header-nav {
     justify-content: center;
   }
+
+}
+
+@media screen and (max-width: 660px) {
+  .header-nav-wrap {
+    text-align: center;
+    grid-column: 1 / -1;
+    grid-row: 3 / 4 ;
+  }
+  .header-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+  }
+  .btn-nav {
+    padding: 5px;
+    background-color: rgb(40, 19, 61);
+  }
 }
