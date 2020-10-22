@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Wpage.css';
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import useGetOneWall from '../../services/getOneWallApi';
+import useViewport from '../utils/useViewport';
 import Aside from './aside/Aside';
 import Loader from '../utils/Loader';
 import Error from '../utils/Error';
@@ -13,6 +14,15 @@ import Error from '../utils/Error';
 function Wpage({ match }) {
   const [zoomClass, setZoomClass] = useState('showcase-img-sm');
   const [asideHidden, setAsideHidden] = useState(false);
+
+  const { width } = useViewport();
+  const breakpoint = 690;
+
+  useEffect(() => {
+    if (width < breakpoint) {
+      setAsideHidden(true);
+    }
+  }, []);
 
   const onHideClick = () => {
     setAsideHidden(!asideHidden);

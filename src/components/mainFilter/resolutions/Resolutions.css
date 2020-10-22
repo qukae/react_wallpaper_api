@@ -57,7 +57,7 @@
   background: #444;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 690px) {
   .res-menu {
     grid-template-columns: 160px 160px ;
     grid-template-rows: 40px .7fr 1fr 1fr;

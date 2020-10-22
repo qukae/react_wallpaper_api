@@ -39,7 +39,7 @@
   }
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 690px) {
   .main-filter {
     position: static;
     grid-column: 1 / 4;

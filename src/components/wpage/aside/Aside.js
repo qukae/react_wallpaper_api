@@ -62,6 +62,7 @@ function Aside({wallData, onHideClick, asideHidden, ...props}) {
     );
   };
 
+
   return (
     <aside className={`aside-wpage ${asideHidden ? 'aside-wpage-hidden' : ''}`}>
       <div className="aside-div">

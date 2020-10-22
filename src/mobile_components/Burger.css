@@ -10,6 +10,9 @@
   background: #000;
   z-index: 2;
 }
+.burger-menu-closed {
+  display: none;
+}
 .burger-btn {
   position: absolute;
   margin-right: 30px;

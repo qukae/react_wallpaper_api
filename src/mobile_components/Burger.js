@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimesCircle, faRedoAlt, faCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBars, faTimesCircle, faRedoAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import { withRouter } from 'react-router-dom';
 import DispatchContext from '../components/app/DispatchContext';
 
@@ -47,14 +49,10 @@ const MainFilter = (props) => {
       >
         <FontAwesomeIcon className="ico ico-burger" icon={open ? faTimesCircle : faBars} />
       </button>
-      {open
-        ? (
-          <div className="burger-menu">
-            <Filter />
-            <HeaderNav />
-          </div>
-        )
-        : null}
+      <div className={`burger-menu ${open ? '' : 'burger-menu-closed'}`}>
+        <Filter />
+        <HeaderNav />
+      </div>
     </>
   );
 };
