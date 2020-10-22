@@ -30,7 +30,7 @@ export default function Gallery({ loading, error, hasMore }) {
       return (
         <Link to={`/w/${item.id}`} key={item.id}>
           <figure className="container-img" ref={lastWallzRef}>
-            <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
+            <img src={item.thumbs.small} className="gallery-img" alt={item.id} />
           </figure>
         </Link>
       );
@@ -38,7 +38,7 @@ export default function Gallery({ loading, error, hasMore }) {
     return (
       <Link to={`/w/${item.id}`} key={item.id}>
         <figure className="container-img">
-          <img src={item.thumbs.large} className="gallery-img" alt={item.id} />
+          <img src={item.thumbs.small} className="gallery-img" alt={item.id} />
         </figure>
       </Link>
     );

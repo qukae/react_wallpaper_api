@@ -18,7 +18,7 @@ const HeaderNav = () => {
 
         <li className="btn-nav-li">
           <Link to="/">
-            <button type="button" onClick={() => onNavClick('date_added')} className="btn-nav">Latest!</button>
+            <button type="button" onClick={() => onNavClick('date_added')} className="btn-nav">Latest</button>
           </Link>
         </li>
         <li className="btn-nav-li">
@@ -37,8 +37,8 @@ const HeaderNav = () => {
           </Link>
         </li>
         <li className="btn-nav-li">
-          <Link to="/">
-            <button type="button" onClick={() => onNavClick('date_added')} className="btn-nav">About</button>
+          <Link to="/about">
+            <button type="button" className="btn-nav">About</button>
           </Link>
         </li>
       </ul>

@@ -3,7 +3,7 @@
   animation: appear 1.5s;
 }
 .aside-wpage-hidden {
-  transform: translateX(-300px)
+  transform: scale(0)
 }
 @keyframes appear {
   0% { opacity: 0; }

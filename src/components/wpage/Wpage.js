@@ -22,7 +22,7 @@ function Wpage({ match }) {
     if (width < breakpoint) {
       setAsideHidden(true);
     }
-  }, []);
+  }, [width]);
 
   const onHideClick = () => {
     setAsideHidden(!asideHidden);

@@ -10,7 +10,7 @@
   justify-self: center;
 }
 .showcase-full {
-  grid-template-columns: 0px auto
+  grid-template-columns: 0px auto;
 }
 .img-div {
   display: flex;
