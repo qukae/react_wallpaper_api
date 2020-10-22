@@ -1,8 +1,9 @@
 .header-nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   list-style: none;
   margin-bottom: 0;
+  min-width: 344px;
 }
 .btn-nav-li{
   padding: 0.3rem ;
@@ -19,4 +20,27 @@
 }
 .btn-nav:hover{
   color:  #5e7f9e;
+}
+
+@media screen and (max-width: 968px) {
+  .header-nav {
+    justify-content: center;
+  }
+
+}
+
+@media screen and (max-width: 690px) {
+  .header-nav-wrap {
+    text-align: center;
+    grid-column: 1 / -1;
+    grid-row: 3 / 4 ;
+  }
+  .header-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+  }
+  .btn-nav {
+    padding: 5px;
+    background-color: rgb(40, 19, 61);
+  }
 }

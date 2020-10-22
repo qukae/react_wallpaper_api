@@ -58,11 +58,6 @@ const Resolutions = () => {
     appDispatch({ type: 'atleast', payload: '' });
     setOpen(false);
   };
-  // handles exact or atleast option and reset res
-  useEffect(() => {
-    appDispatch({ type: 'resolutions', payload: '' });
-    appDispatch({ type: 'atleast', payload: '' });
-  }, [atleast]); // eslint-disable-line
 
   const createResolutionsEl = (resArray) => {
     const el = resArray.map((res) => (
@@ -83,7 +78,7 @@ const Resolutions = () => {
         onClick={() => setOpen(!open)}
       >
         {appState.atleast ? String.fromCharCode(8805) : null}
-        {appState.resolutions || appState.atleast || 'Resolution'}
+        {appState.atleast || appState.resolutions || 'Resolution'}
         {open ? String.fromCharCode(9652) : String.fromCharCode(9662)}
       </button>
 

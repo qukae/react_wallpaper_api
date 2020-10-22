@@ -3,15 +3,23 @@ import './MainHeader.css';
 import Logo from '../logo/Logo';
 import HeaderNav from '../headerNav/HeaderNav';
 import Search from '../search/Search';
+import useViewport from '../utils/useViewport';
+import Burger from '../../mobile_components/Burger';
 
-const MainHeader = () => (
-  <>
-    <div className="main-header">
-      <Logo />
-      <HeaderNav />
-      <Search />
-    </div>
-  </>
-);
+const MainHeader = () => {
+  const { width } = useViewport();
+
+  const breakpoint = 690;
+
+  return (
+    <>
+      <div className="main-header">
+        <Logo />
+        {width > breakpoint ? <HeaderNav /> : <Burger />}
+        <Search />
+      </div>
+    </>
+  );
+};
 
 export default MainHeader;

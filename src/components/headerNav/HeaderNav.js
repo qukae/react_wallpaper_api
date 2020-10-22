@@ -13,33 +13,34 @@ const HeaderNav = () => {
   };
 
   return (
-    <nav>
+    <nav className="header-nav-wrap">
       <ul className="header-nav">
-        <Link to="/">
-          <li className="btn-nav-li">
+
+        <li className="btn-nav-li">
+          <Link to="/">
             <button type="button" onClick={() => onNavClick('date_added')} className="btn-nav">Latest</button>
-          </li>
-        </Link>
-        <Link to="/">
-          <li className="btn-nav-li">
+          </Link>
+        </li>
+        <li className="btn-nav-li">
+          <Link to="/">
             <button type="button" onClick={() => onNavClick('views')} className="btn-nav">Most viewed</button>
-          </li>
-        </Link>
-        <Link to="/">
-          <li className="btn-nav-li">
+          </Link>
+        </li>
+        <li className="btn-nav-li">
+          <Link to="/">
             <button type="button" onClick={() => onNavClick('toplist')} className="btn-nav">Toplist</button>
-          </li>
-        </Link>
-        <Link to="/">
-          <li className="btn-nav-li">
+          </Link>
+        </li>
+        <li className="btn-nav-li">
+          <Link to="/">
             <button type="button" onClick={() => onNavClick('random')} className="btn-nav">Random</button>
-          </li>
-        </Link>
-        <Link to="/">
-          <li className="btn-nav-li">
-            <button type="button" onClick={() => onNavClick('date_added')} className="btn-nav">About</button>
-          </li>
-        </Link>
+          </Link>
+        </li>
+        <li className="btn-nav-li">
+          <Link to="/about">
+            <button type="button" className="btn-nav">About</button>
+          </Link>
+        </li>
       </ul>
     </nav>
   );

@@ -22,7 +22,7 @@ const Search = (props) => {
   };
 
   const clear = () => {
-    appDispatch({ type: 'search_q', payload: '' });
+    appDispatch({ type: 'showLists' });
     appDispatch({ type: 'getWallz' });
     props.history.push('/');
   };

@@ -10,7 +10,7 @@
   justify-self: center;
 }
 .showcase-full {
-  grid-template-columns: 0px auto
+  grid-template-columns: 0px auto;
 }
 .img-div {
   display: flex;
@@ -58,7 +58,7 @@
 }
 .btn-hide {
   position: absolute;
-  top: 120px;
+  top: 180px;
   left: 0;
   background-color:  #252525;
   border: 0;
@@ -76,3 +76,4 @@
 .btn-hide-ico-right {
   transform: scale(-1.5);
 }
+

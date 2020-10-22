@@ -11,8 +11,10 @@
     "fortawesome",
     "immer",
     "mathc",
+    "minmax",
     "noninteractive",
     "toplist",
-    "uploader"
+    "uploader",
+    "wallhaven"
   ]
 }

@@ -12,7 +12,9 @@ import Gallery from '../gallery/Gallery';
 import MainHeader from '../mainHeader/MainHeader';
 import MainFilter from '../mainFilter/MainFilter';
 import useGetWallz from '../../services/getWallzApi';
+import useViewport from '../utils/useViewport';
 import Wpage from '../wpage/Wpage';
+import About from '../about/About';
 
 export default function App() {
   function appReducer(draft, action) {
@@ -131,6 +133,10 @@ export default function App() {
     dispatch({ type: 'wallzData', payload: data });
   }, [data]); // eslint-disable-line
 
+  const { width } = useViewport();
+
+  const breakpoint = 690;
+
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
@@ -140,7 +146,7 @@ export default function App() {
             render={() => (
               <>
                 <MainHeader />
-                <MainFilter />
+                {width > breakpoint ? <MainFilter /> : null}
               </>
             )}
           />
@@ -157,7 +163,12 @@ export default function App() {
               <Gallery loading={loading} error={error} hasMore={hasMore} />
             )}
           />
-
+          <Route
+            path="/about"
+            render={() => (
+              <About />
+            )}
+          />
         </Router>
       </DispatchContext.Provider>
     </StateContext.Provider>
