@@ -22,7 +22,6 @@
   position: absolute;
   margin: auto;
   animation: appear 1.5s;
-  padding-top: 100px;
 }
 @keyframes appear {
   0% {  opacity: 0; }
