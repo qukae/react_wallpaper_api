@@ -16,7 +16,7 @@ function Wpage({ match }) {
   const [asideHidden, setAsideHidden] = useState(false);
 
   const { width } = useViewport();
-  const breakpoint = 690;
+  const breakpoint = 700;
 
   useEffect(() => {
     if (width < breakpoint) {

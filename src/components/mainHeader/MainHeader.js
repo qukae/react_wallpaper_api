@@ -9,7 +9,7 @@ import Burger from '../../mobile_components/Burger';
 const MainHeader = () => {
   const { width } = useViewport();
 
-  const breakpoint = 690;
+  const breakpoint = 700;
 
   return (
     <>

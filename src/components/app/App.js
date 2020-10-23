@@ -82,6 +82,7 @@ export default function App() {
         draft.categories = [1, 1, 0];
         draft.colors = '';
         draft.resolutions = '';
+        draft.sorting = 'date_added';
         draft.atleast = '';
         draft.ratios = '';
         draft.order = 'desc';
@@ -135,7 +136,7 @@ export default function App() {
 
   const { width } = useViewport();
 
-  const breakpoint = 690;
+  const breakpoint = 700;
 
   return (
     <StateContext.Provider value={state}>

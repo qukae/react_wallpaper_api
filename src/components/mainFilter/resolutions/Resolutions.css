@@ -57,13 +57,13 @@
   background: #444;
 }
 
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 700px) {
   .res-menu {
     grid-template-columns: 160px 160px ;
     grid-template-rows: 40px .7fr 1fr 1fr;
     column-gap: .3rem;
     padding: 0.2rem;
-    right: -120px;
+    right: -110px;
     background-color: #000;
     z-index: 3;
   }

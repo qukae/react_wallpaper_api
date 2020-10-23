@@ -7,8 +7,8 @@ const HeaderNav = () => {
   const appDispatch = useContext(DispatchContext);
 
   const onNavClick = (sorting) => {
-    appDispatch({ type: 'sorting', payload: sorting });
     appDispatch({ type: 'showLists' });
+    appDispatch({ type: 'sorting', payload: sorting });
     appDispatch({ type: 'getWallz' });
   };
 

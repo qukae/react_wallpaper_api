@@ -31,7 +31,6 @@ export default function useGetWallz(q, categories, colors, resolutions, atleast,
       cancelToken: new axios.CancelToken((c) => { cancel = c; return c; }),
     }).then((res) => {
       setData(res.data.data);
-      console.log(res);
       setHasMore(res.data.data.length > 0);
 
       setLoading(false);

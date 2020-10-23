@@ -16,7 +16,7 @@ import Order from '../components/mainFilter/order/Order';
 import Sorting from '../components/mainFilter/sorting/Sorting';
 import './Burger.css';
 
-const MainFilter = (props) => {
+const Burger = (props) => {
   const appDispatch = useContext(DispatchContext);
   const [open, setOpen] = useState(false);
 
@@ -24,6 +24,7 @@ const MainFilter = (props) => {
     e.preventDefault();
     appDispatch({ type: 'getWallz' });
     props.history.push('/');
+    setOpen(false);
   };
 
   const Filter = () => (
@@ -57,4 +58,4 @@ const MainFilter = (props) => {
   );
 };
 
-export default withRouter(MainFilter);
+export default withRouter(Burger);
