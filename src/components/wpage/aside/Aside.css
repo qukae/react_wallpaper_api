@@ -1,9 +1,10 @@
 .aside-wpage {
   padding-top: 100px;
   animation: appear 1.5s;
+  /* z-index: 3; */
 }
 .aside-wpage-hidden {
-  transform: scale(0)
+  display: none;
 }
 @keyframes appear {
   0% { opacity: 0; }
