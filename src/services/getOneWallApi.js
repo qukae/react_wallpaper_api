@@ -12,7 +12,7 @@ export default function useGetOneWall(id) {
     let cancel;
     axios({
       method: 'GET',
-      url: `https://cors-anywhere.herokuapp.com/https://wallhaven.cc/api/v1/w/${id}`,
+      url: `https://cors-qukae.herokuapp.com/https://wallhaven.cc/api/v1/w/${id}`,
       cancelToken: new axios.CancelToken((c) => { cancel = c; return c; }),
     }).then((res) => {
       setWallData(res.data.data);

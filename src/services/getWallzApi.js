@@ -24,7 +24,7 @@ export default function useGetWallz(q, categories, colors, resolutions, atleast,
     let cancel;
     axios({
       method: 'GET',
-      url: 'https://cors-anywhere.herokuapp.com/https://wallhaven.cc/api/v1/search',
+      url: 'https://cors-qukae.herokuapp.com/https://wallhaven.cc/api/v1/search',
       params: {
         q, categories, colors, resolutions, atleast, ratios, order, sorting, page,
       },

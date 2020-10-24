@@ -21,6 +21,7 @@
 .showcase-img {
   position: absolute;
   margin: auto;
+  padding-top: 100px;
   animation: appear 1.5s;
 }
 @keyframes appear {
@@ -42,7 +43,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding-top: 100px;
   cursor: zoom-in;
   max-width: none;
   max-height: 100%;
@@ -50,7 +50,6 @@
 .showcase-img-lg {
   top: 0;
   left: 0;
-  padding-top: 100px;
   cursor: zoom-out;
   max-width: none;
   max-height: none;
@@ -76,3 +75,8 @@
   transform: scale(-1.5);
 }
 
+@media screen and (max-width: 968px) {
+  .showcase-img {
+    padding-top: 0;
+  }
+}
