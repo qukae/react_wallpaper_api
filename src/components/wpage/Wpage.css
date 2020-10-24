@@ -35,6 +35,7 @@
   right: 0;
   cursor: zoom-in;
   margin: auto;
+  padding-top: 100px;
   max-width: 95%;
   max-height: 95%;
 }
