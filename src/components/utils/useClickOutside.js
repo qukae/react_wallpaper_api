@@ -1,3 +1,5 @@
+// This is for future use. doesn't work now.
+
 import { useEffect, useState } from 'react';
 
 export default function useClickOutside(node, event) {
