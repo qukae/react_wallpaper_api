@@ -15,6 +15,7 @@ import Sorting from './sorting/Sorting';
 const MainFilter = (props) => {
   const appDispatch = useContext(DispatchContext);
 
+  // sends command to fetch data when user click on update filter btn
   const onSubmit = (e) => {
     e.preventDefault();
     appDispatch({ type: 'getWallz' });

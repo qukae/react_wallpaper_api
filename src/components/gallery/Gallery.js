@@ -25,7 +25,9 @@ export default function Gallery({ loading, error, hasMore }) {
     if (node) observer.current.observe(node);
   }, [loading, hasMore]); // eslint-disable-line
 
+  // creating gallery images
   const CreateEl = () => wallzData.map((item, index) => {
+    // this if takes last element in array of images and adds ref for IntersectionObserver
     if (wallzData.length === index + 1) {
       return (
         <Link to={`/w/${item.id}`} key={item.id}>

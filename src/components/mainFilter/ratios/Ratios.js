@@ -8,18 +8,18 @@ import StateContext from '../../app/StateContext';
 import './Ratios.css';
 
 const Ratios = () => {
-  const ratUW = ['21x9', '32x9', '48x9'];
-  const ratW = ['16x9', '16x10'];
-  const ratP = ['9x16', '10x16', '9x18'];
-  const ratS = ['1x1', '3x2', '4x3', '5x4'];
+  const ratUW = ['21x9', '32x9', '48x9']; // ultrawide
+  const ratW = ['16x9', '16x10']; // wide
+  const ratP = ['9x16', '10x16', '9x18']; // portrait
+  const ratS = ['1x1', '3x2', '4x3', '5x4']; // square
 
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
-  const node = useRef();
+  const node = useRef(); // for detecting click outside modal window
   const [open, setOpen] = useState(false);
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = (e) => { // i need somehow to move it in separate component
     if (node.current.contains(e.target)) {
       // inside click
       return;
@@ -68,6 +68,7 @@ const Ratios = () => {
         onClick={() => setOpen(!open)}
       >
         {appState.ratios || 'Ratio'}
+        {/* charCode is for arrow up or down when menu open/close */}
         {open ? String.fromCharCode(9652) : String.fromCharCode(9662)}
       </button>
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useViewport() {
+export default function useViewport() { // for displaying or hiding mobile components
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {

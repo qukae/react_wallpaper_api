@@ -17,6 +17,7 @@ import Wpage from '../wpage/Wpage';
 import About from '../about/About';
 
 export default function App() {
+  // this is main state of the app, i path it dow to other components using useContext hook
   function appReducer(draft, action) {
     switch (action.type) {
       case 'search_q':
@@ -77,7 +78,7 @@ export default function App() {
         draft.page += action.payload;
         break;
 
-      case 'showLists':
+      case 'showLists': // reset state when doing lists query
         draft.search_q = '';
         draft.categories = [1, 1, 0];
         draft.colors = '';
@@ -88,7 +89,7 @@ export default function App() {
         draft.order = 'desc';
         break;
 
-      case 'wallzData':
+      case 'wallzData': // array of server response with images and other data
         if (draft.page === 1) {
           draft.wallzData = action.payload;
           return;
@@ -96,7 +97,7 @@ export default function App() {
         draft.wallzData = [...draft.wallzData, ...action.payload];
         break;
 
-      case 'getWallz':
+      case 'getWallz': // clears array of images in state and says useGetWallz to clear his array and send back new
         draft.page = 1;
         draft.wallzData = [];
         draft.getWallz = !draft.getWallz;
@@ -120,9 +121,10 @@ export default function App() {
     getWallz: 0,
   };
 
+  // immer library
   const [state, dispatch] = useImmerReducer(appReducer, initialState);
 
-  // Custom hook useGetWallz gets wallpapers data as 'data' from server using axios
+  // Custom hook useGetWallz(located in services) gets wallpapers data as 'data' from server using axios
   const {
     hasMore,
     loading,
@@ -134,9 +136,9 @@ export default function App() {
     dispatch({ type: 'wallzData', payload: data });
   }, [data]); // eslint-disable-line
 
-  const { width } = useViewport();
+  const { width } = useViewport(); // custom hook for responsive.
 
-  const breakpoint = 700;
+  const breakpoint = 700; // screen width value related to useViewport. Used for show mobile or desktop components
 
   return (
     <StateContext.Provider value={state}>
@@ -147,13 +149,15 @@ export default function App() {
             render={() => (
               <>
                 <MainHeader />
+                { /* if mobile then do not display MainFilter */ }
                 {width > breakpoint ? <MainFilter /> : null}
               </>
             )}
           />
           <Route
-            path="/w/:id"
+            path="/w/:id" // id of image
             render={() => (
+              // when you click on images you go here
               <Wpage />
             )}
           />

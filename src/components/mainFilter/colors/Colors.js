@@ -19,10 +19,10 @@ const Colors = () => {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
-  const node = useRef();
+  const node = useRef(); // for detecting click outside modal window
   const [open, setOpen] = useState(false);
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = (e) => { // i need somehow to move it in separate component
     if (node.current.contains(e.target)) {
       // inside click
       return;
@@ -47,9 +47,9 @@ const Colors = () => {
     setOpen(false);
   };
 
-  const createColorsEl = () => {
+  const createColorsEl = () => { // creates menu with colors
     const el = colors.map((color) => {
-      if (color === 'reset') {
+      if (color === 'reset') { // special element. resets color
         return (
           <button onClick={() => handleChange(null)} type="button" className="colors-btn" key="reset" style={{ backgroundColor: 'white' }}>clear</button>
         );
@@ -73,6 +73,7 @@ const Colors = () => {
         style={{ backgroundColor: `#${appState.colors || '313131'}` }}
       >
         Color
+        {/* charCode is for arrow up or down when menu open/close */}
         {open ? String.fromCharCode(9652) : String.fromCharCode(9662)}
       </button>
 

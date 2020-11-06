@@ -15,14 +15,14 @@ function Wpage({ match }) {
   const [zoomClass, setZoomClass] = useState('showcase-img-sm');
   const [asideHidden, setAsideHidden] = useState(false);
 
-  const { width } = useViewport();
-  const breakpoint = 700;
+  const { width } = useViewport(); // for mobile
+  const breakpoint = 700; // screen width in px
 
   useEffect(() => {
     if (width < breakpoint) {
       setAsideHidden(true);
     }
-  }, [width]);
+  }, [width]); // show/hide side panel when mobile/desktop
 
   const onHideClick = () => {
     setAsideHidden(!asideHidden);
@@ -31,7 +31,7 @@ function Wpage({ match }) {
   // custom hook useGetOneWall gets one wallpaper data from server using axios and image id
   const { wallData, loading, error } = useGetOneWall(match.params.id);
 
-  const onZoom = () => {
+  const onZoom = () => { // zooms image changing max width and height
     switch (zoomClass) {
       case 'showcase-img-sm':
         setZoomClass('showcase-img-md');
@@ -64,6 +64,7 @@ function Wpage({ match }) {
     <div className="wpage-container">
       <div className={`showcase ${asideHidden ? 'showcase-full' : ''}`}>
         {wallData ? (
+          // side panel with image data
           <Aside
             wallData={wallData}
             onHideClick={onHideClick}

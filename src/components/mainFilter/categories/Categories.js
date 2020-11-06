@@ -9,9 +9,10 @@ const Categories = () => {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
-  const onCategoriesClick = (indx) => {
+  const onCategoriesClick = (indx) => { // send categories hardcoded to btns to app state
     appDispatch({ type: 'categories', payload: indx });
   };
+
   return (
     <div>
       <button

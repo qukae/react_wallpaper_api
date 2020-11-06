@@ -13,10 +13,10 @@ const Sorting = () => {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
-  const node = useRef();
+  const node = useRef(); // for detecting click outside modal window
   const [open, setOpen] = useState(false);
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = (e) => { // i need somehow to move it in separate component
     if (node.current.contains(e.target)) {
       // inside click
       return;
@@ -62,6 +62,7 @@ const Sorting = () => {
         onClick={() => setOpen(!open)}
       >
         {appState.sorting.charAt(0).toUpperCase() + appState.sorting.slice(1) || 'Date Added'}
+        {/* charCode is for arrow up or down when menu open/close */}
         {open ? String.fromCharCode(9652) : String.fromCharCode(9662)}
       </button>
 

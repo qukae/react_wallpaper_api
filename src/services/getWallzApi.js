@@ -3,16 +3,17 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// custom hook taking filter data and returning array of images and some status
 export default function useGetWallz(q, categories, colors, resolutions, atleast, ratios, order, sorting, page, getWallz) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // show loader when fetching
   const [error, setError] = useState(false);
   const [data, setData] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(true); // when server don't have more images it stops sending requests
 
   useEffect(() => {
     setData([]);
     setHasMore(true);
-  }, [getWallz]);
+  }, [getWallz]); // clear images array
 
   useEffect(() => {
     if (!hasMore) {
@@ -24,7 +25,7 @@ export default function useGetWallz(q, categories, colors, resolutions, atleast,
     let cancel;
     axios({
       method: 'GET',
-      url: 'https://cors-qukae.herokuapp.com/https://wallhaven.cc/api/v1/search',
+      url: 'https://cors-qukae.herokuapp.com/https://wallhaven.cc/api/v1/search', // i run cors proxy for this app
       params: {
         q, categories, colors, resolutions, atleast, ratios, order, sorting, page,
       },

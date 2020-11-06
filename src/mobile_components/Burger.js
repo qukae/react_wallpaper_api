@@ -16,6 +16,10 @@ import Order from '../components/mainFilter/order/Order';
 import Sorting from '../components/mainFilter/sorting/Sorting';
 import './Burger.css';
 
+// it have very pure layout but who even want to browse PC wallpapers on their phone anyway?
+// I made it just that app can be used on mobile device
+// It uses same components as desktop but a little different logic, order and css
+// Maybe later when i learn reactNative i make a full mobile app
 const Burger = (props) => {
   const appDispatch = useContext(DispatchContext);
   const [open, setOpen] = useState(false);

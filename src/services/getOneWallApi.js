@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function useGetOneWall(id) {
+export default function useGetOneWall(id) { // custom hook gets one wallpaper data using axios
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [wallData, setWallData] = useState();

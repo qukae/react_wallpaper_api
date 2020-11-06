@@ -12,11 +12,13 @@ const Logo = () => {
     <Link to="/" className="logo-wrap">
       <div
         className="logo"
+        // goes to main page and reset all
         onClick={() => {
           appDispatch({ type: 'showLists' });
           appDispatch({ type: 'getWallz' });
         }}
       >
+        {/* 3 times needed for broken text effect */}
         <p className="glitch">
           <span aria-hidden="true">WALLZ_HAVEN</span>
           <span aria-hidden="true">WALLZ_HAVEN</span>

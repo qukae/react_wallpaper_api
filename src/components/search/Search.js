@@ -19,7 +19,7 @@ const Search = (props) => {
     e.preventDefault();
     props.history.push('/');
     appDispatch({ type: 'getWallz' });
-  };
+  }; // gets new data only on submit also goes to main page
 
   const clear = () => {
     appDispatch({ type: 'showLists' });

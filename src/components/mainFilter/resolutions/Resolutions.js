@@ -18,11 +18,11 @@ const Resolutions = () => {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
-  const node = useRef();
+  const node = useRef(); // for detecting click outside modal window
   const [open, setOpen] = useState(false);
   const [atleast, setAtleast] = useState(true);
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = (e) => { // i need somehow to move it in separate component
     if (node.current.contains(e.target)) {
       // inside click
       return;
@@ -77,8 +77,10 @@ const Resolutions = () => {
         className={`filter-btn ${open ? clazz : null}`}
         onClick={() => setOpen(!open)}
       >
+        {/* charCode shows >= sign */}
         {appState.atleast ? String.fromCharCode(8805) : null}
         {appState.atleast || appState.resolutions || 'Resolution'}
+        {/* charCode is for arrow up or down when menu open/close */}
         {open ? String.fromCharCode(9652) : String.fromCharCode(9662)}
       </button>
 

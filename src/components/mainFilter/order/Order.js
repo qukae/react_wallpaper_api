@@ -11,6 +11,7 @@ const Order = () => {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
+  // defines order of images displayed
   const changeOrder = () => {
     if (appState.order === 'desc') {
       appDispatch({ type: 'order', payload: 'asc' });
